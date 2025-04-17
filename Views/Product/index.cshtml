@@ -1,0 +1,151 @@
+﻿@model List<FashionShop.Models.Entities.Product>
+@{
+    ViewData["title"] = "Sản Phẩm";
+    var categoryName = ViewBag.CategoryName ?? "";
+    var searchTerm = ViewBag.SearchTerm;
+    var currentPage = ViewBag.CurrentPage;
+    var totalPages = ViewBag.TotalPages;
+    var categoryId = ViewBag.CategoryId;
+}
+
+<div class="bg-gray-100 py-8">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">
+                @if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    <span>Kết quả tìm kiếm cho: "@searchTerm"</span>
+                }
+                else
+                {
+                    @categoryName
+                }
+            </h1>
+            <div class="flex space-x-2">
+                <select id="sort-options" class="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="newest">Mới nhất</option>
+                    <option value="price-low">Giá: Thấp đến Cao</option>
+                    <option value="price-high">Giá: Cao đến Thấp</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            @foreach (var product in Model)
+            {
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@product.product_id">
+                            <img src="~/Images/ProductImage/@product.image" alt="@product.name" class="w-full h-80 object-cover" />
+                        </a>
+                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2 flex justify-between">
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="inline">
+                                <input type="hidden" name="productId" value="@product.product_id" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <button type="submit" class="text-white">
+                                    <i class="fas fa-plus"></i> Thêm vào giỏ
+                                </button>
+                            </form>
+                            <div class="flex space-x-2">
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.product_id" class="text-white">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                @if (Context.Session.GetInt32("user_id") != null)
+                                {
+                                    <form asp-controller="Wishlist" asp-action="AddToWishlist" method="post" class="inline">
+                                        <input type="hidden" name="productId" value="@product.product_id" />
+                                        <button type="submit" class="text-white">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                    </form>
+                                }
+                                <a asp-controller="Product" asp-action="Compare" asp-route-id="@product.product_id" class="text-white">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center">
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@product.product_id" class="block">
+                            <h3 class="font-medium text-gray-800 mb-2 truncate">@product.name</h3>
+                        </a>
+                        <p class="text-red-500 font-bold">@product.price.ToString("N0")<sup>đ</sup></p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model.Count == 0)
+        {
+            <div class="text-center py-10">
+                <i class="fas fa-search text-gray-300 text-5xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-gray-700 mb-2">Không tìm thấy sản phẩm</h2>
+                <p class="text-gray-500 mb-6">Chúng tôi không tìm thấy sản phẩm nào phù hợp với tiêu chí của bạn.</p>
+                <a asp-controller="Product" asp-action="Index" class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700">
+                    Xem Tất Cả Sản Phẩm
+                </a>
+            </div>
+        }
+
+        <!-- Pagination -->
+        @if (totalPages > 1)
+        {
+            <div class="flex justify-center mt-10">
+                <nav class="flex items-center space-x-1">
+                    @if (currentPage > 1)
+                    {
+                        <a asp-controller="Product" asp-action="Index" asp-route-page="@(currentPage - 1)" asp-route-categoryId="@categoryId" asp-route-search="@searchTerm" class="px-4 py-2 border rounded text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    }
+
+                    @for (int i = Math.Max(1, currentPage - 2); i <= Math.Min(totalPages, currentPage + 2); i++)
+                    {
+                        <a asp-controller="Product" asp-action="Index" asp-route-page="@i" asp-route-categoryId="@categoryId" asp-route-search="@searchTerm" class="px-4 py-2 border rounded @(i == currentPage ? "bg-indigo-600 text-white" : "text-gray-700 hover:bg-gray-100")">
+                            @i
+                        </a>
+                    }
+
+                    @if (currentPage < totalPages)
+                    {
+                        <a asp-controller="Product" asp-action="Index" asp-route-page="@(currentPage + 1)" asp-route-categoryId="@categoryId" asp-route-search="@searchTerm" class="px-4 py-2 border rounded text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    }
+                </nav>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('sort-options').addEventListener('change', function () {
+            let productsContainer = document.querySelector('.grid');
+            let products = Array.from(productsContainer.children);
+
+            switch (this.value) {
+                case 'newest':
+                    // Keep original order
+                    break;
+                case 'price-low':
+                    products.sort((a, b) => {
+                        let priceA = parseFloat(a.querySelector('.text-red-500').innerText.replace('đ', '').replace(/,/g, ''));
+                        let priceB = parseFloat(b.querySelector('.text-red-500').innerText.replace('đ', '').replace(/,/g, ''));
+                        return priceA - priceB;
+                    });
+                    break;
+                case 'price-high':
+                    products.sort((a, b) => {
+                        let priceA = parseFloat(a.querySelector('.text-red-500').innerText.replace('đ', '').replace(/,/g, ''));
+                        let priceB = parseFloat(b.querySelector('.text-red-500').innerText.replace('đ', '').replace(/,/g, ''));
+                        return priceB - priceA;
+                    });
+                    break;
+            }
+
+            productsContainer.innerHTML = '';
+            products.forEach(product => productsContainer.appendChild(product));
+        });
+    </script>
+}

@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Liên Hệ";
+}
+
+<div class="container mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-8 text-center">Liên Hệ Với Chúng Tôi</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold mb-6">Gửi Tin Nhắn</h2>
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Họ Tên</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Tiêu Đề</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Nội Dung</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+                        </div>
+
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700">
+                            Gửi Tin Nhắn
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold mb-6">Thông Tin Liên Hệ</h2>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium">Cửa Hàng</h3>
+                                <p class="text-gray-600">123 Đường Thời Trang, Thành Phố, Quốc Gia</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium">Điện Thoại</h3>
+                                <p class="text-gray-600">+1 (123) 456-7890</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium">Email</h3>
+                                <p class="text-gray-600">info@fashionshop.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium">Giờ Làm Việc</h3>
+                                <p class="text-gray-600">Thứ Hai - Thứ Sáu: 9:00 - 20:00</p>
+                                <p class="text-gray-600">Thứ Bảy - Chủ Nhật: 10:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold mb-6">Theo Dõi Chúng Tôi</h2>
+
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-pink-600 text-white rounded-full flex items-center justify-center hover:bg-pink-700">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

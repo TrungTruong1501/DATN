@@ -1,0 +1,55 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "Blog";
+    var currentPage = ViewBag.CurrentPage;
+    var totalPages = ViewBag.TotalPages;
+}
+<div class="container mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-8 text-center">Blog Của Chúng Tôi</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+        @foreach (var blog in Model)
+        {
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="~/Images/Blog/@blog.thumbnail" alt="@blog.title" class="w-full h-56 object-cover" />
+                <div class="p-6">
+                    <div class="flex items-center text-gray-500 text-sm mb-2">
+                        <i class="far fa-calendar-alt mr-2"></i> @blog.date
+                        <span class="mx-2">|</span>
+                        <i class="far fa-user mr-2"></i> @blog.author
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 truncate">@blog.title</h3>
+                    <p class="text-gray-600 mb-4 line-clamp-3">@blog.contentBlog</p>
+                    <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.id" class="text-indigo-600 hover:text-indigo-800 font-medium">
+                        Đọc Thêm <i class="fas fa-long-arrow-alt-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- Pagination -->
+    @if (totalPages > 1)
+    {
+        <div class="flex justify-center mt-10">
+            <nav class="flex items-center space-x-1">
+                @if (currentPage > 1)
+                {
+                    <a asp-controller="Blog" asp-action="Index" asp-route-page="@(currentPage - 1)" class="px-4 py-2 border rounded text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                }
+                @for (int i = Math.Max(1, currentPage - 2); i <= Math.Min(totalPages, currentPage + 2); i++)
+                {
+                    <a asp-controller="Blog" asp-action="Index" asp-route-page="@i" class="px-4 py-2 border rounded @(i == currentPage ? "bg-indigo-600 text-white" : "text-gray-700 hover:bg-gray-100")">
+                        @i
+                    </a>
+                }
+                @if (currentPage < totalPages)
+                {
+                    <a asp-controller="Blog" asp-action="Index" asp-route-page="@(currentPage + 1)" class="px-4 py-2 border rounded text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                }
+            </nav>
+        </div>
+    }
+</div>

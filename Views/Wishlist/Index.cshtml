@@ -1,0 +1,85 @@
+﻿@model List<Wishlist>
+@{
+    ViewData["Title"] = "My Wishlist";
+}
+
+<div class="container mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-8">My Wishlist</h1>
+
+    @if (Model.Count == 0)
+    {
+        <div class="bg-white rounded-lg shadow-md p-8 mb-8 text-center">
+            <div class="mb-6">
+                <i class="fas fa-heart text-gray-300 text-6xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Your wishlist is empty</h2>
+            <p class="text-gray-500 mb-6">Add items to your wishlist by clicking the heart icon on products you like.</p>
+            <a asp-controller="Product" asp-action="Index" class="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 inline-block">
+                Browse Products
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            @foreach (var item in Model)
+            {
+                <div class="bg-white rounded-lg shadow-md overflow-hidden group">
+                    <div class="relative overflow-hidden">
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.product_id">
+                            <img src="~/Images/ProductImage/@item.Product.image" alt="@item.Product.name" class="w-full h-64 object-cover transform transition-transform group-hover:scale-105" />
+                        </a>
+                        <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-2">
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.product_id" class="bg-white p-2 rounded-full hover:bg-indigo-600 hover:text-white">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <form asp-controller="Wishlist" asp-action="RemoveFromWishlist" method="post">
+                                <input type="hidden" name="wishlistId" value="@item.wishlist_id" />
+                                <button type="submit" class="bg-white p-2 rounded-full hover:bg-red-600 hover:text-white">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-800 mb-2 truncate">@item.Product.name</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <p class="text-indigo-600 font-bold">@item.Product.price.ToString("NO")"</p>
+                            <div class="flex space-x-1">
+                                @if (item.Product.Colors != null && item.Product.Colors.Count > 0)
+                                {
+                                    @foreach (var color in item.Product.Colors.Take(3))
+                                    {
+                                        <div class="w-4 h-4 rounded-full border border-gray-300" style="background-color: @color.color_hex"></div>
+                                    }
+                                    @if (item.Product.Colors.Count > 3)
+                                    {
+                                        <div class="text-gray-500 text-xs">+@(item.Product.Colors.Count - 3)</div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        @if (item.Product.Colors != null && item.Product.Colors.Count > 0)
+                        {
+                            <form asp-controller="Wishlist" asp-action="MoveToCart" method="post" class="mb-2">
+                                <input type="hidden" name="wishlistId" value="@item.wishlist_id" />
+                                <div class="flex space-x-2 mb-3">
+                                    <select name="colorId" class="flex-1 border rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                        @foreach (var color in item.Product.Colors)
+                                        {
+                                            <option value="@color.color_id">@color.color_name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 flex items-center justify-center">
+                                    <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                </button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

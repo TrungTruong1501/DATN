@@ -1,0 +1,713 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Blog\\Thum1a.jpg",
+      "PackagePath": "staticwebassets\\Images\\Blog\\Thum1a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Blog\\Thum2a.jpg",
+      "PackagePath": "staticwebassets\\Images\\Blog\\Thum2a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Blog\\ảnh 1.jpg",
+      "PackagePath": "staticwebassets\\Images\\Blog\\ảnh 1.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Logo\\Admin.jpg",
+      "PackagePath": "staticwebassets\\Images\\Logo\\Admin.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Logo\\Banner.jpg",
+      "PackagePath": "staticwebassets\\Images\\Logo\\Banner.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Logo\\Logo1.png",
+      "PackagePath": "staticwebassets\\Images\\Logo\\Logo1.png"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Logo\\NenAdmin.jpg",
+      "PackagePath": "staticwebassets\\Images\\Logo\\NenAdmin.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Logo\\iconATM.JPG",
+      "PackagePath": "staticwebassets\\Images\\Logo\\iconATM.JPG"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Logo\\iconVisa.JPG",
+      "PackagePath": "staticwebassets\\Images\\Logo\\iconVisa.JPG"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\Logo\\iconmaster.JPG",
+      "PackagePath": "staticwebassets\\Images\\Logo\\iconmaster.JPG"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK01a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK01a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK01b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK01b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK01c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK01c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK02a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK02a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK02b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK02b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK02c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK02c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK03a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK03a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK03b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK03b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK03c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK03c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK04a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK04a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK04b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK04b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK04c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK04c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK05a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK05a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK05b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK05b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK05c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AK05c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT01a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT01a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT01b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT01b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT01c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT01c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT02a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT02a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT02b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT02b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT02c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT02c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT03a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT03a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT03b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT03b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT03c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT03c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT04a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT04a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT04b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT04b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT04c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT04c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT05a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT05a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT05b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT05b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT05c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT05c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT06a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT06a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT06b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT06b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT06c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT06c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB01a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB01a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB01b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB01b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB01c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB01c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB02a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB02a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB02b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB02b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB02c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB02c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB03a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB03a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB03b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB03b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB03c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB03c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB04a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB04a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB04b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB04b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB05a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB05a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB05b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DB05b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV01a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV01a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV01b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV01b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV01c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV01c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV02a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV02a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV02b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV02b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV02c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV02c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV03a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV03a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV03b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV03b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV03c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV03c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV04a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV04a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV04b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV04b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV04c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV04c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV05a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV05a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV05b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV05b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DV05c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\DV05c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA01a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA01a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA01b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA01b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA01c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA01c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA02a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA02a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA02b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA02b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA02c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA02c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA03a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA03a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA03b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA03b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA03c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA03c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA04a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA04a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA04b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA04b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA04c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA04c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA05a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA05a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA05b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA05b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QA05c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QA05c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN01a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN01a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN01b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN01b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN01c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN01c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN02a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN02a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN02b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN02b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN02c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN02c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN03a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN03a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN03b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN03b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN03c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN03c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN04a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN04a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN04b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN04b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN04c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN04c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN05a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN05a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN05b.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN05b.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\QN05c.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\QN05c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\anh2.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\anh2.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\anh8.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\anh8.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\sptest.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\sptest.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\ảnh 1.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\ảnh 1.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\branch\\Admin.jpg",
+      "PackagePath": "staticwebassets\\Images\\branch\\Admin.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\branch\\Banner.jpg",
+      "PackagePath": "staticwebassets\\Images\\branch\\Banner.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\branch\\LogoAdmin.png",
+      "PackagePath": "staticwebassets\\Images\\branch\\LogoAdmin.png"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\branch\\NenAdmin.jpg",
+      "PackagePath": "staticwebassets\\Images\\branch\\NenAdmin.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\branch\\iconATM.JPG",
+      "PackagePath": "staticwebassets\\Images\\branch\\iconATM.JPG"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\branch\\iconVisa.JPG",
+      "PackagePath": "staticwebassets\\Images\\branch\\iconVisa.JPG"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\branch\\iconmaster.JPG",
+      "PackagePath": "staticwebassets\\Images\\branch\\iconmaster.JPG"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\css\\output.css",
+      "PackagePath": "staticwebassets\\css\\output.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FashionShop.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.FashionShop.props",
+      "PackagePath": "build\\FashionShop.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.FashionShop.props",
+      "PackagePath": "buildMultiTargeting\\FashionShop.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.FashionShop.props",
+      "PackagePath": "buildTransitive\\FashionShop.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

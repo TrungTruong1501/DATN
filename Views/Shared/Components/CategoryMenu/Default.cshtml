@@ -1,0 +1,10 @@
+﻿@model List<Category>
+
+<div class="py-2">
+    @foreach (var category in Model)
+    {
+        <a asp-controller="Product" asp-action="Index" asp-route-categoryId="@category.category_id" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-indigo-600">
+            @category.name
+        </a>
+    }
+</div>
