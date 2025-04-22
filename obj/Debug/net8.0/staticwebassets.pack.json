@@ -449,6 +449,10 @@
       "PackagePath": "staticwebassets\\Images\\branch\\iconmaster.JPG"
     },
     {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\css\\Admin.css",
+      "PackagePath": "staticwebassets\\css\\Admin.css"
+    },
+    {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\css\\output.css",
       "PackagePath": "staticwebassets\\css\\output.css"
     },
@@ -459,6 +463,10 @@
     {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\js\\admin-dashboard.js",
+      "PackagePath": "staticwebassets\\js\\admin-dashboard.js"
     },
     {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\js\\site.js",

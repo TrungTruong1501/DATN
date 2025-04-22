@@ -1,0 +1,287 @@
+﻿@{
+    ViewData["Title"] = "Phân Tích Tồn Kho";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="pb-5 border-b border-gray-200 mb-6">
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">Phân Tích Tồn Kho</h1>
+            <p class="mt-2 text-sm text-gray-500">Theo dõi và quản lý tồn kho sản phẩm của bạn.</p>
+        </div>
+        <a href="@Url.Action("Export", "Report", new { reportType = "inventory" })" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+            <i class="fas fa-file-csv mr-2"></i> Xuất Tồn Kho
+        </a>
+    </div>
+</div>
+
+<!-- Thẻ Tóm Tắt -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                    <i class="fas fa-box text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Sản Phẩm</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalProducts</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                    <i class="fas fa-warehouse text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Tồn Kho</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalStock</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
+                    <i class="fas fa-exclamation-triangle text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Sản Phẩm Tồn Kho Thấp</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.LowStockCount</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-red-500 rounded-md p-3">
+                    <i class="fas fa-times-circle text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Hết Hàng</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.OutOfStockCount</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Biểu Đồ Biến Động Tồn Kho -->
+<div class="bg-white overflow-hidden shadow-sm rounded-lg mb-8">
+    <div class="px-6 py-5 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">Biến Động Tồn Kho</h3>
+    </div>
+    <div class="p-6">
+        <div class="h-80">
+            <canvas id="stockMovementChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Tồn Kho Theo Danh Mục -->
+<div class="bg-white overflow-hidden shadow-sm rounded-lg mb-8">
+    <div class="px-6 py-5 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">Tồn Kho Theo Danh Mục</h3>
+    </div>
+    <div class="p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="h-64">
+                <canvas id="inventoryCategoryChart"></canvas>
+            </div>
+            <div class="overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Danh Mục</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sản Phẩm</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tồn Kho</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Giá TB</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach (var category in ViewBag.InventoryByCategory)
+                        {
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@category.CategoryName</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@category.ProductCount</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@category.TotalStock</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@category.AveragePrice.ToString("N0")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Các Hành Động Theo Trạng Thái Tồn Kho -->
+<div class="bg-white overflow-hidden shadow-sm rounded-lg">
+    <div class="px-6 py-5 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">Các Hành Động Tồn Kho</h3>
+    </div>
+    <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400 hover:ring-1 hover:ring-gray-400">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="h-12 w-12 rounded-full bg-indigo-100 flex items-center justify-center">
+                        <i class="fas fa-file-import text-indigo-600 text-lg"></i>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-base font-medium text-gray-900">Nhập Kho</h3>
+                    <p class="mt-2 text-sm text-gray-500">Tải lên tệp CSV để cập nhật hàng loạt mức tồn kho.</p>
+                    <button type="button" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                        <i class="fas fa-upload mr-2"></i> Nhập
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400 hover:ring-1 hover:ring-gray-400">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-boxes text-green-600 text-lg"></i>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-base font-medium text-gray-900">Điều Chỉnh Tồn Kho</h3>
+                    <p class="mt-2 text-sm text-gray-500">Điều chỉnh thủ công mức tồn kho cho từng sản phẩm.</p>
+                    <button type="button" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
+                        <i class="fas fa-edit mr-2"></i> Điều Chỉnh
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400 hover:ring-1 hover:ring-gray-400">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
+                        <i class="fas fa-bell text-red-600 text-lg"></i>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-base font-medium text-gray-900">Cảnh Báo Tồn Kho Thấp</h3>
+                    <p class="mt-2 text-sm text-gray-500">Cấu hình cảnh báo tự động cho sản phẩm tồn kho thấp.</p>
+                    <button type="button" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+                        <i class="fas fa-cog mr-2"></i> Cấu Hình
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Biểu Đồ Biến Động Tồn Kho
+            const stockMovementData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.StockMovement));
+            const stockMovementCtx = document.getElementById('stockMovementChart').getContext('2d');
+
+            const stockMovementChart = new Chart(stockMovementCtx, {
+                type: 'line',
+                data: {
+                    labels: stockMovementData.map(item => item.Month),
+                    datasets: [
+                        {
+                            label: 'Nhập Kho',
+                            data: stockMovementData.map(item => item.Incoming),
+                            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                            borderColor: 'rgb(16, 185, 129)',
+                            borderWidth: 2,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Xuất Kho',
+                            data: stockMovementData.map(item => item.Outgoing),
+                            backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                            borderColor: 'rgb(239, 68, 68)',
+                            borderWidth: 2,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Tổng Tồn Kho',
+                            data: stockMovementData.map(item => item.Stock),
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            borderColor: 'rgb(59, 130, 246)',
+                            borderWidth: 2,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Biểu Đồ Tồn Kho Theo Danh Mục
+            const inventoryCategoryData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.InventoryByCategory));
+            const inventoryCategoryCtx = document.getElementById('inventoryCategoryChart').getContext('2d');
+
+            const inventoryCategoryChart = new Chart(inventoryCategoryCtx, {
+                type: 'pie',
+                data: {
+                    labels: inventoryCategoryData.map(item => item.CategoryName),
+                    datasets: [{
+                        data: inventoryCategoryData.map(item => item.TotalStock),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 206, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(153, 102, 255)',
+                            'rgb(255, 159, 64)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.label + ': ' + context.raw.toLocaleString() + ' đơn vị';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

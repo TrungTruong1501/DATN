@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "m0hwNHXNWncqSvRJ5klomeMbguc+qT6lnlDZ8qarFYA=",
+  "Hash": "xgqwc+g5Xb51JdnqV8/ur6/yG4AxqTpCCYjDG+rlVDI=",
   "Source": "FashionShop",
   "BasePath": "_content/FashionShop",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\css\\Admin.css",
+      "SourceId": "FashionShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\",
+      "BasePath": "_content/FashionShop",
+      "RelativePath": "css/Admin.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Admin.css"
+    },
     {
       "Identity": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\css\\output.css",
       "SourceId": "FashionShop",
@@ -2200,6 +2219,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\ProductImage\\sptest.jpg"
+    },
+    {
+      "Identity": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\js\\admin-dashboard.js",
+      "SourceId": "FashionShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\",
+      "BasePath": "_content/FashionShop",
+      "RelativePath": "js/admin-dashboard.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\admin-dashboard.js"
     },
     {
       "Identity": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\js\\site.js",

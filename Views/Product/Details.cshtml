@@ -31,7 +31,7 @@
                     @foreach (var image in product.gallery.Split(','))
                     {
                         <div class="cursor-pointer rounded-md overflow-hidden hover:opacity-75 transition-opacity">
-                            <img src="~/Images/ProductImage/@product.image" alt="" class="thumbnail w-full h-24 object-cover" />
+                            <img src="~/Images/ProductImage/@image" alt="" class="thumbnail w-full h-24 object-cover" />
                         </div>
                     }
                 </div>

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Quản Trị FashionShop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Thanh bên -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto bg-indigo-700">
+                    <div class="flex items-center flex-shrink-0 px-4">
+                        <span class="text-xl font-bold text-white">FashionShop</span>
+                    </div>
+                    <div class="mt-5 flex-grow flex flex-col">
+                        <nav class="flex-1 px-2 space-y-1">
+                            <a href="@Url.Action("Index", "AdminDashboard")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "AdminDashboard" ? "bg-indigo-800" : "hover:bg-indigo-600") text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-tachometer-alt mr-3 h-4 w-4"></i>
+                                Dashboard
+                            </a>
+                            <a href="@Url.Action("Index", "ProductAdmin")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "ProductAdmin" ? "bg-indigo-800" : "hover:bg-indigo-600") text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-tshirt mr-3 h-4 w-4"></i>
+                                Sản Phẩm
+                            </a>
+                            <a href="@Url.Action("Index", "CategoryAdmin")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "CategoryAdmin" ? "bg-indigo-800" : "hover:bg-indigo-600") text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-folder mr-3 h-4 w-4"></i>
+                                Danh Mục
+                            </a>
+                            <a href="@Url.Action("Index", "OrderAdmin")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "OrderAdmin" ? "bg-indigo-800" : "hover:bg-indigo-600") text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-shopping-cart mr-3 h-4 w-4"></i>
+                                Đơn Hàng
+                            </a>
+                            <a href="@Url.Action("Index", "UserAdmin")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "UserAdmin" ? "bg-indigo-800" : "hover:bg-indigo-600") text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-users mr-3 h-4 w-4"></i>
+                                Người Dùng
+                            </a>
+
+                            <!-- Phần Báo Cáo & Phân Tích -->
+                            <a href="@Url.Action("Index", "Report")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Report" ? "bg-indigo-800" : "hover:bg-indigo-600") text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-chart-bar mr-3 h-4 w-4"></i>
+                                Báo Cáo & Phân Tích
+                            </a>
+
+                            <!-- Menu con của Báo Cáo -->
+                            @if (ViewContext.RouteData.Values["Controller"].ToString() == "Report")
+                            {
+                                <div class="pl-8 space-y-1">
+                                    <a href="@Url.Action("Sales", "Report")" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Sales" ? "bg-indigo-900" : "hover:bg-indigo-600") text-indigo-100 group flex items-center px-2 py-1 text-xs font-medium rounded-md">
+                                        <i class="fas fa-chart-line mr-2 h-3 w-3"></i>
+                                        Báo Cáo Doanh Số
+                                    </a>
+                                    <a href="@Url.Action("Products", "Report")" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Products" ? "bg-indigo-900" : "hover:bg-indigo-600") text-indigo-100 group flex items-center px-2 py-1 text-xs font-medium rounded-md">
+                                        <i class="fas fa-box mr-2 h-3 w-3"></i>
+                                        Phân Tích Sản Phẩm
+                                    </a>
+                                    <a href="@Url.Action("Customers", "Report")" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Customers" ? "bg-indigo-900" : "hover:bg-indigo-600") text-indigo-100 group flex items-center px-2 py-1 text-xs font-medium rounded-md">
+                                        <i class="fas fa-user-friends mr-2 h-3 w-3"></i>
+                                        Thông Tin Khách Hàng
+                                    </a>
+                                    <a href="@Url.Action("Inventory", "Report")" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Inventory" ? "bg-indigo-900" : "hover:bg-indigo-600") text-indigo-100 group flex items-center px-2 py-1 text-xs font-medium rounded-md">
+                                        <i class="fas fa-warehouse mr-2 h-3 w-3"></i>
+                                        Phân Tích Kho Hàng
+                                    </a>
+                                </div>
+                            }
+
+                            <div class="pt-4 mt-4 border-t border-indigo-600">
+                                <a href="@Url.Action("Index", "Home")" class="text-indigo-200 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                    <i class="fas fa-store mr-3 h-4 w-4"></i>
+                                    Đến Cửa Hàng
+                                </a>
+                                <a href="@Url.Action("Logout", "Account")" class="text-indigo-200 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                    <i class="fas fa-sign-out-alt mr-3 h-4 w-4"></i>
+                                    Đăng Xuất
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nội dung chính -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+                <button type="button" class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden">
+                    <span class="sr-only">Mở thanh bên</span>
+                    <i class="fas fa-bars h-6 w-6"></i>
+                </button>
+                <div class="flex-1 px-4 flex justify-between">
+                    <div class="flex-1 flex">
+                        <h1 class="text-2xl font-semibold text-gray-900 my-auto">@ViewData["Title"]</h1>
+                    </div>
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <!-- Thông báo -->
+                        <button class="relative p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-3">
+                            <span class="sr-only">Xem thông báo</span>
+                            <i class="fas fa-bell h-6 w-6"></i>
+                            <!-- Huy hiệu thông báo -->
+                            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 ring-2 ring-white"></span>
+                        </button>
+
+                        <div class="ml-3 relative">
+                            <div class="flex items-center">
+                                <span class="hidden md:inline-block mr-2 text-sm font-medium text-gray-700">@Context.Session.GetString("Username")</span>
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <main class="flex-1 relative overflow-y-auto focus:outline-none">
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        @RenderBody()
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

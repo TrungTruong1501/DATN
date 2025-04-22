@@ -1,0 +1,212 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Thêm sản phẩm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var categories = ViewBag.Categories as List<Category>;
+}
+
+<div class="pb-5 border-b border-gray-200 mb-6">
+    <h1 class="text-2xl font-bold text-gray-900">Thêm sản phẩm</h1>
+</div>
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg p-6">
+    <form asp-controller="ProductAdmin" asp-action="Add" method="post" enctype="multipart/form-data">
+        <div class="space-y-6">
+            <!-- Tên sản phẩm -->
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Tên sản phẩm</label>
+                <div class="mt-1">
+                    <input type="text" asp-for="name" id="name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+            </div>
+
+            <!-- SKU -->
+            <div>
+                <label for="sku" class="block text-sm font-medium text-gray-700">SKU</label>
+                <div class="mt-1">
+                    <input type="text" asp-for="sku" id="sku" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+            </div>
+
+            <!-- Danh mục -->
+            <div>
+                <label for="categoryId" class="block text-sm font-medium text-gray-700">Danh mục</label>
+                <div class="mt-1">
+                    <select asp-for="category_id" id="categoryId" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                        <option value="">-- Chọn danh mục --</option>
+                        @foreach (var category in categories)
+                        {
+                            <option value="@category.category_id">@category.name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <!-- Hình ảnh chính -->
+            <div>
+                <label for="mainImage" class="block text-sm font-medium text-gray-700">Hình ảnh</label>
+                <div class="mt-1">
+                    <input type="file" id="mainImage" name="mainImage" class="block w-full text-sm text-gray-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-full file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-purple-200 file:text-purple-700
+                        hover:file:bg-purple-100" required>
+                </div>
+            </div>
+
+            <!-- Thêm màu sắc -->
+            <div class="border border-gray-200 rounded-md p-4">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Thêm màu sắc</h3>
+
+                <div id="colorInputs" class="space-y-4">
+                    <div class="color-input-group grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Tên màu -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Màu sắc</label>
+                            <select name="colorNames[]" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="Da" data-hex="#e2b999">Da</option>
+                                <option value="Trắng" data-hex="#c8c8c6">Trắng</option>
+                                <option value="Đen" data-hex="#1a1b1f">Đen</option>
+                                <option value="Xám" data-hex="#b4b5ba">Xám</option>
+                                <option value="Đỏ" data-hex="#5c0317">Đỏ</option>
+                                <option value="Xanh dương" data-hex="#193282">Xanh dương</option>
+                                <option value="Xanh lá" data-hex="#8e8d78">Xanh lá</option>
+                                <option value="Hồng" data-hex="#e8c5c9">Hồng</option>
+                                <option value="Nâu" data-hex="#947a69">Nâu</option>
+                                <option value="Kem" data-hex="#efe6dd">Kem</option>
+                            </select>
+                        </div>
+
+                        <!-- Mã màu -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Mã màu</label>
+                            <input type="text" name="colorHexes[]" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" readonly>
+                        </div>
+
+                        <!-- Hình ảnh màu -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Hình ảnh màu</label>
+                            <input type="file" name="colorImages[]" class="mt-1 block w-full text-sm text-gray-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-purple-200 file:text-purple-700
+                                hover:file:bg-purple-100" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="button" id="addMoreColorBtn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Thêm màu
+                    </button>
+                </div>
+            </div>
+
+            <!-- Đơn giá -->
+            <div>
+                <label for="price" class="block text-sm font-medium text-gray-700">Đơn giá</label>
+                <div class="mt-1">
+                    <input type="number" asp-for="price" id="price" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+            </div>
+
+            <!-- Số lượng -->
+            <div>
+                <label for="stock" class="block text-sm font-medium text-gray-700">Số lượng</label>
+                <div class="mt-1">
+                    <input type="number" asp-for="stock" id="stock" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+            </div>
+
+            <!-- Mô tả -->
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Mô tả</label>
+                <div class="mt-1">
+                    <textarea asp-for="description" id="description" rows="4" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required></textarea>
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="pt-5">
+                <button type="submit" class="inline-flex justify-center py-2 px-8 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    Thêm
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Update hex value when color name is selected
+            $(document).on('change', 'select[name="colorNames[]"]', function () {
+                const hexValue = $(this).find('option:selected').data('hex');
+                $(this).closest('.color-input-group').find('input[name="colorHexes[]"]').val(hexValue);
+            });
+
+            // Set initial hex value for first color
+            $('select[name="colorNames[]"]').trigger('change');
+
+            // Add more color inputs
+            $('#addMoreColorBtn').click(function () {
+                const colorInputTemplate = `
+                                    <div class="color-input-group grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+                                        <!-- Tên màu -->
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700">Màu sắc</label>
+                                            <select name="colorNames[]" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <option value="Da" data-hex="#e2b999">Da</option>
+                                                <option value="Trắng" data-hex="#c8c8c6">Trắng</option>
+                                                <option value="Đen" data-hex="#1a1b1f">Đen</option>
+                                                <option value="Xám" data-hex="#b4b5ba">Xám</option>
+                                                <option value="Đỏ" data-hex="#5c0317">Đỏ</option>
+                                                <option value="Xanh dương" data-hex="#193282">Xanh dương</option>
+                                                <option value="Xanh lá" data-hex="#8e8d78">Xanh lá</option>
+                                                <option value="Hồng" data-hex="#e8c5c9">Hồng</option>
+                                                <option value="Nâu" data-hex="#947a69">Nâu</option>
+                                                <option value="Kem" data-hex="#efe6dd">Kem</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Mã màu -->
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700">Mã màu</label>
+                                            <input type="text" name="colorHexes[]" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" readonly>
+                                        </div>
+
+                                        <!-- Hình ảnh màu -->
+                                        <div class="relative">
+                                            <label class="block text-sm font-medium text-gray-700">Hình ảnh màu</label>
+                                            <input type="file" name="colorImages[]" class="mt-1 block w-full text-sm text-gray-500
+                                                file:mr-4 file:py-2 file:px-4
+                                                file:rounded-full file:border-0
+                                                file:text-sm file:font-semibold
+                                                file:bg-purple-200 file:text-purple-700
+                                                hover:file:bg-purple-100" required>
+                                            <button type="button" class="remove-color absolute top-0 right-0 text-red-500 hover:text-red-700">
+                                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `;
+
+                $('#colorInputs').append(colorInputTemplate);
+                // Trigger change to set initial hex value
+                $('#colorInputs .color-input-group:last-child select[name="colorNames[]"]').trigger('change');
+            });
+
+            // Remove color input group
+            $(document).on('click', '.remove-color', function () {
+                $(this).closest('.color-input-group').remove();
+            });
+        });
+    </script>
+}

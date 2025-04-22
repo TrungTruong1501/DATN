@@ -1,0 +1,358 @@
+﻿@{
+    ViewData["Title"] = "Báo Cáo & Phân Tích";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="pb-5 border-b border-gray-200 mb-6">
+    <h1 class="text-2xl font-bold text-gray-900">Báo Cáo & Phân Tích</h1>
+    <p class="mt-2 text-sm text-gray-500">Xem thống kê chi tiết và báo cáo về hiệu suất của cửa hàng.</p>
+</div>
+
+<!-- Thẻ Tóm Tắt -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                    <i class="fas fa-dollar-sign text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Doanh Số</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalSales.ToString("N0")</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                    <i class="fas fa-shopping-cart text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Đơn Hàng</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalOrders</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                    <i class="fas fa-users text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Khách Hàng</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalCustomers</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-purple-500 rounded-md p-3">
+                    <i class="fas fa-box text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Sản Phẩm</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalProducts</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Liên Kết Báo Cáo -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow">
+        <a href="@Url.Action("Sales", "Report")" class="block p-6">
+            <div class="flex items-center mb-4">
+                <div class="flex-shrink-0 bg-indigo-100 text-indigo-500 rounded-md p-3">
+                    <i class="fas fa-chart-line text-xl"></i>
+                </div>
+                <h3 class="ml-4 text-lg font-medium text-gray-900">Báo Cáo Doanh Số</h3>
+            </div>
+            <p class="text-gray-500 text-sm">Xem báo cáo doanh số chi tiết, xu hướng doanh thu và thống kê đơn hàng.</p>
+            <div class="mt-4 flex items-center text-indigo-600">
+                <span>Xem Báo Cáo</span>
+                <i class="fas fa-arrow-right ml-2"></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow">
+        <a href="@Url.Action("Products", "Report")" class="block p-6">
+            <div class="flex items-center mb-4">
+                <div class="flex-shrink-0 bg-green-100 text-green-500 rounded-md p-3">
+                    <i class="fas fa-box text-xl"></i>
+                </div>
+                <h3 class="ml-4 text-lg font-medium text-gray-900">Phân Tích Sản Phẩm</h3>
+            </div>
+            <p class="text-gray-500 text-sm">Phân tích sản phẩm bán chạy, tình trạng hàng tồn kho và hiệu suất theo danh mục.</p>
+            <div class="mt-4 flex items-center text-indigo-600">
+                <span>Xem Báo Cáo</span>
+                <i class="fas fa-arrow-right ml-2"></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow">
+        <a href="@Url.Action("Customers", "Report")" class="block p-6">
+            <div class="flex items-center mb-4">
+                <div class="flex-shrink-0 bg-blue-100 text-blue-500 rounded-md p-3">
+                    <i class="fas fa-user-friends text-xl"></i>
+                </div>
+                <h3 class="ml-4 text-lg font-medium text-gray-900">Thông Tin Khách Hàng</h3>
+            </div>
+            <p class="text-gray-500 text-sm">Hiểu hành vi khách hàng, khách hàng hàng đầu và xu hướng thu hút khách hàng.</p>
+            <div class="mt-4 flex items-center text-indigo-600">
+                <span>Xem Báo Cáo</span>
+                <i class="fas fa-arrow-right ml-2"></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow">
+        <a href="@Url.Action("Inventory", "Report")" class="block p-6">
+            <div class="flex items-center mb-4">
+                <div class="flex-shrink-0 bg-yellow-100 text-yellow-500 rounded-md p-3">
+                    <i class="fas fa-warehouse text-xl"></i>
+                </div>
+                <h3 class="ml-4 text-lg font-medium text-gray-900">Phân Tích Kho Hàng</h3>
+            </div>
+            <p class="text-gray-500 text-sm">Theo dõi mức tồn kho, biến động hàng và quản lý sản phẩm sắp hết hàng.</p>
+            <div class="mt-4 flex items-center text-indigo-600">
+                <span>Xem Báo Cáo</span>
+                <i class="fas fa-arrow-right ml-2"></i>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- Xuất Báo Cáo -->
+<div class="bg-white overflow-hidden shadow-sm rounded-lg mb-8">
+    <div class="px-6 py-5 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">Xuất Báo Cáo</h3>
+    </div>
+    <div class="p-6">
+        <p class="text-gray-500 mb-4">Xuất dữ liệu sang định dạng CSV để phân tích thêm hoặc lưu trữ hồ sơ.</p>
+        <div class="flex flex-wrap gap-3">
+            <a href="@Url.Action("Export", "Report", new { reportType = "sales" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                <i class="fas fa-file-csv mr-2"></i> Xuất Báo Cáo Doanh Số
+            </a>
+            <a href="@Url.Action("Export", "Report", new { reportType = "products" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                <i class="fas fa-file-csv mr-2"></i> Xuất Báo Cáo Sản Phẩm
+            </a>
+            <a href="@Url.Action("Export", "Report", new { reportType = "customers" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                <i class="fas fa-file-csv mr-2"></i> Xuất Báo Cáo Khách Hàng
+            </a>
+            <a href="@Url.Action("Export", "Report", new { reportType = "inventory" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                <i class="fas fa-file-csv mr-2"></i> Xuất Báo Cáo Kho Hàng
+            </a>
+        </div>
+        <div class="mt-4">
+            <p class="text-gray-500 mb-4">Tạo báo cáo PDF để trình bày hoặc in ấn.</p>
+            <div class="flex flex-wrap gap-3">
+                <a href="@Url.Action("GeneratePdf", "Report", new { reportType = "sales" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    <i class="fas fa-file-pdf mr-2"></i> PDF Doanh Số
+                </a>
+                <a href="@Url.Action("GeneratePdf", "Report", new { reportType = "products" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    <i class="fas fa-file-pdf mr-2"></i> PDF Sản Phẩm
+                </a>
+                <a href="@Url.Action("GeneratePdf", "Report", new { reportType = "customers" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    <i class="fas fa-file-pdf mr-2"></i> PDF Khách Hàng
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Biểu Đồ Doanh Số Gần Đây -->
+<div class="bg-white overflow-hidden shadow-sm rounded-lg mb-8">
+    <div class="px-6 py-5 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">Xu Hướng Doanh Số (30 Ngày Qua)</h3>
+    </div>
+    <div class="p-6">
+        <div class="h-64">
+            <canvas id="recentSalesChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Sản Phẩm Bán Chạy và Danh Mục -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="px-6 py-5 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Sản Phẩm Bán Chạy Nhất</h3>
+        </div>
+        <div class="p-6">
+            <div class="h-56">
+                <canvas id="topProductsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="px-6 py-5 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Doanh Số Theo Danh Mục</h3>
+        </div>
+        <div class="p-6">
+            <div class="h-56">
+                <canvas id="categorySalesChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Biểu Đồ Doanh Số Gần Đây
+            const recentSalesData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RecentOrders));
+            const recentSalesCtx = document.getElementById('recentSalesChart').getContext('2d');
+
+            const recentSalesChart = new Chart(recentSalesCtx, {
+                type: 'line',
+                data: {
+                    labels: recentSalesData.map(item => item.Date),
+                    datasets: [{
+                        label: 'Doanh Số Hàng Ngày',
+                        data: recentSalesData.map(item => item.Total),
+                        backgroundColor: 'rgba(79, 70, 229, 0.2)',
+                        borderColor: 'rgba(79, 70, 229, 1)',
+                        borderWidth: 2,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.raw.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Biểu Đồ Sản Phẩm Bán Chạy
+            const topProductsData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.TopProducts));
+            const topProductsCtx = document.getElementById('topProductsChart').getContext('2d');
+
+            const topProductsChart = new Chart(topProductsCtx, {
+                type: 'bar',
+                data: {
+                    labels: topProductsData.map(item => item.ProductName),
+                    datasets: [{
+                        label: 'Đã Bán',
+                        data: topProductsData.map(item => item.QuantitySold),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Biểu Đồ Doanh Số Theo Danh Mục
+            const categoryData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.CategoryStats));
+            const categoryCtx = document.getElementById('categorySalesChart').getContext('2d');
+
+            const categorySalesChart = new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: categoryData.map(item => item.CategoryName),
+                    datasets: [{
+                        data: categoryData.map(item => item.Revenue),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.label + ':' + context.raw.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}
