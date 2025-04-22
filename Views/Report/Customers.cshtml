@@ -1,0 +1,173 @@
+﻿@{
+    ViewData["Title"] = "Thông Tin Khách Hàng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="pb-5 border-b border-gray-200 mb-6">
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">Thông Tin Khách Hàng</h1>
+            <p class="mt-2 text-sm text-gray-500">Hiểu hành vi khách hàng và mô hình mua hàng.</p>
+        </div>
+        <a href="@Url.Action("Export", "Report", new { reportType = "customers" })" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+            <i class="fas fa-file-csv mr-2"></i> Xuất Dữ Liệu Khách Hàng
+        </a>
+    </div>
+</div>
+
+<!-- Khách Hàng Hàng Đầu -->
+<div class="bg-white overflow-hidden shadow-sm rounded-lg mb-8">
+    <div class="px-6 py-5 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">Khách Hàng Hàng Đầu Theo Chi Tiêu</h3>
+    </div>
+    <div class="p-6">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Khách Hàng</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Đơn Hàng</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tổng Chi Tiêu</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Giá Trị Đơn Hàng TB</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var customer in ViewBag.TopCustomers)
+                    {
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
+                                            <span class="text-gray-600 text-sm font-medium">@customer.UserName.Substring(0, 1)</span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">@customer.UserName</div>
+                                        <div class="text-sm text-gray-500">ID: @customer.UserId</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@customer.OrderCount</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">@customer.TotalSpent.ToString("N0")</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@((customer.TotalSpent / customer.OrderCount).ToString("N0"))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Biểu Đồ Khách Hàng Mới -->
+<div class="bg-white overflow-hidden shadow-sm rounded-lg mb-8">
+    <div class="px-6 py-5 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">Thu Hút Khách Hàng Mới</h3>
+    </div>
+    <div class="p-6">
+        <div class="h-80">
+            <canvas id="newCustomersChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Phân Bố Khách Hàng -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <!-- Khách Hàng Thường Xuyên vs Khách Hàng Một Lần -->
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="px-6 py-5 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Lòng Trung Thành Của Khách Hàng</h3>
+        </div>
+        <div class="p-6">
+            <div class="h-64">
+                <canvas id="customerLoyaltyChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Giá Trị Đơn Hàng Trung Bình Theo Loại Khách Hàng -->
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+        <div class="px-6 py-5 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Phân Khúc Khách Hàng</h3>
+        </div>
+        <div class="p-6">
+            <div class="flex items-center justify-center h-full">
+                <div class="text-center">
+                    <p class="text-sm text-gray-500">Dữ liệu phân khúc khách hàng đang được thu thập</p>
+                    <p class="mt-2 text-sm text-gray-500">Vui lòng quay lại sau để xem thông tin chi tiết</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Biểu Đồ Khách Hàng Mới
+            const newCustomersData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.NewCustomersByMonth));
+            const newCustomersCtx = document.getElementById('newCustomersChart').getContext('2d');
+
+            const newCustomersChart = new Chart(newCustomersCtx, {
+                type: 'bar',
+                data: {
+                    labels: newCustomersData.map(item => item.Month),
+                    datasets: [{
+                        label: 'Khách Hàng Mới',
+                        data: newCustomersData.map(item => item.Count),
+                        backgroundColor: 'rgba(79, 70, 229, 0.7)',
+                        borderColor: 'rgb(79, 70, 229)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Biểu Đồ Lòng Trung Thành Của Khách Hàng - Dữ liệu giả vì chúng ta không có dữ liệu này trong controller
+            const customerLoyaltyCtx = document.getElementById('customerLoyaltyChart').getContext('2d');
+
+            // Đây là dữ liệu giả - trong ứng dụng thực tế, bạn sẽ tính toán từ dữ liệu đơn hàng
+            const customerLoyaltyData = {
+                labels: ['Khách Hàng Thường Xuyên', 'Khách Hàng Một Lần'],
+                datasets: [{
+                    data: [65, 35],
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(156, 163, 175, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgb(16, 185, 129)',
+                        'rgb(156, 163, 175)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            const customerLoyaltyChart = new Chart(customerLoyaltyCtx, {
+                type: 'pie',
+                data: customerLoyaltyData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

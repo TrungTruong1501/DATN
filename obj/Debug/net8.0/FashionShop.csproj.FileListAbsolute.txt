@@ -166,3 +166,5 @@ C:\DATN\Sourcode\FashionShop\obj\Debug\net8.0\refint\FashionShop.dll
 C:\DATN\Sourcode\FashionShop\obj\Debug\net8.0\FashionShop.pdb
 C:\DATN\Sourcode\FashionShop\obj\Debug\net8.0\FashionShop.genruntimeconfig.cache
 C:\DATN\Sourcode\FashionShop\obj\Debug\net8.0\ref\FashionShop.dll
+C:\DATN\Sourcode\FashionShop\obj\Debug\net8.0\FashionShop.sourcelink.json
+C:\DATN\Sourcode\FashionShop\bin\Debug\net8.0\Newtonsoft.Json.dll

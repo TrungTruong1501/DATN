@@ -1,0 +1,135 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "Bảng Điều Khiển Quản Trị";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Thống kê -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                    <i class="fas fa-tshirt text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Sản Phẩm</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.ProductCount</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                    <i class="fas fa-shopping-bag text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Đơn Hàng</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.OrderCount</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                    <i class="fas fa-users text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Người Dùng</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.UserCount</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="p-5">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
+                    <i class="fas fa-folder text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Danh Mục</dt>
+                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.CategoryCount</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Đơn Hàng Gần Đây -->
+<div class="bg-white shadow overflow-hidden sm:rounded-lg mb-8">
+    <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Đơn Hàng Gần Đây</h3>
+        <a href="@Url.Action("Index", "OrderAdmin")" class="text-sm text-indigo-600 hover:text-indigo-900">Xem Tất Cả</a>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mã Đơn Hàng</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ngày</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Khách Hàng</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tổng Tiền</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trạng Thái</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">#@order.order_id</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@order.order_date.ToString("MM/dd/yyyy")</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@order.User.first_name @order.User.last_name</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@order.total_price</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            @{
+                                string statusClass;
+                                string statusText;
+
+                                switch (order.order_status)
+                                {
+                                    case 0:
+                                        statusClass = "bg-yellow-100 text-yellow-800";
+                                        statusText = "Chờ Xử Lý";
+                                        break;
+                                    case 1:
+                                        statusClass = "bg-blue-100 text-blue-800";
+                                        statusText = "Đang Xử Lý";
+                                        break;
+                                    case 2:
+                                        statusClass = "bg-green-100 text-green-800";
+                                        statusText = "Hoàn Thành";
+                                        break;
+                                    default:
+                                        statusClass = "bg-gray-100 text-gray-800";
+                                        statusText = "Không Xác Định";
+                                        break;
+                                }
+                            }
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full @statusClass">@statusText</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <a href="@Url.Action("Details", "OrderAdmin", new { id = order.order_id })" class="text-indigo-600 hover:text-indigo-900">Xem</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

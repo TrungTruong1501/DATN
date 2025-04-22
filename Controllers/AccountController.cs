@@ -48,6 +48,10 @@ namespace FashionShop.Controllers
             HttpContext.Session.SetInt32("user_id", user.user_id);
             HttpContext.Session.SetString("username", user.username);
             HttpContext.Session.SetInt32("permission", user.permission);
+            if (user.permission == 1)
+            {
+                return RedirectToAction("Index", "AdminDashboard");
+            }
 
             return RedirectToAction("Index", "Home");
         }
