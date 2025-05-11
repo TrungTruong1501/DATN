@@ -21,13 +21,13 @@ namespace FashionShop.Controllers
 
         public async Task<IActionResult> Index(DateTime? startDate, DateTime? endDate)
         {
-            // Check if user is admin
+            // Kiểm tra người dùng có phải là admin
             if (HttpContext.Session.GetInt32("permission") != 1)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Set default date range if not provided
+            // Thiết lập khoảng thời gian mặc định nếu không cung cấp
             if (!startDate.HasValue)
                 startDate = DateTime.Now.AddMonths(-1);
             if (!endDate.HasValue)
@@ -36,19 +36,19 @@ namespace FashionShop.Controllers
             ViewBag.StartDate = startDate.Value.ToString("yyyy-MM-dd");
             ViewBag.EndDate = endDate.Value.ToString("yyyy-MM-dd");
 
-            // Get summary statistics for the selected period
+            // Lấy thống kê tổng quan cho khoảng thời gian đã chọn
             var ordersInRange = _context.Order
                 .Where(o => o.order_date >= startDate && o.order_date <= endDate);
 
             var totalSales = await ordersInRange
-                .Where(o => o.order_status == 2) // Completed orders
+                .Where(o => o.order_status == 2) // Đơn hàng đã hoàn thành
                 .SumAsync(o => o.total_price) ?? 0;
 
             var totalOrders = await ordersInRange.CountAsync();
             var totalProducts = await _context.Product.CountAsync();
-            var totalCustomers = await _context.User.CountAsync(u => u.permission == 0); // Regular customers
+            var totalCustomers = await _context.User.CountAsync(u => u.permission == 0); // Khách hàng thông thường
 
-            // Get new customers in this period
+            // Lấy số lượng khách hàng mới trong khoảng thời gian này
             var newCustomers = await _context.Order
                 .Where(o => o.order_date >= startDate && o.order_date <= endDate)
                 .GroupBy(o => o.user_id)
@@ -68,7 +68,7 @@ namespace FashionShop.Controllers
             ViewBag.TotalCustomers = totalCustomers;
             ViewBag.NewCustomers = newCustomers;
 
-            // Get time-filtered statistics for the dashboard
+            // Lấy thống kê theo thời gian cho bảng điều khiển
             ViewBag.RecentOrders = await GetRecentOrderStats(startDate.Value, endDate.Value);
             ViewBag.TopProducts = await GetTopProductStats(startDate.Value, endDate.Value);
             ViewBag.CategoryStats = await GetCategoryStats(startDate.Value, endDate.Value);
@@ -78,13 +78,13 @@ namespace FashionShop.Controllers
 
         public async Task<IActionResult> Sales(DateTime? startDate, DateTime? endDate)
         {
-            // Check if user is admin
+            // Kiểm tra người dùng có phải là admin
             if (HttpContext.Session.GetInt32("permission") != 1)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Default to last 30 days if no date range provided
+            // Mặc định là 30 ngày qua nếu không cung cấp khoảng thời gian
             if (!startDate.HasValue)
                 startDate = DateTime.Now.AddDays(-30);
 
@@ -94,13 +94,13 @@ namespace FashionShop.Controllers
             ViewBag.StartDate = startDate.Value.ToString("yyyy-MM-dd");
             ViewBag.EndDate = endDate.Value.ToString("yyyy-MM-dd");
 
-            // Get sales data for the selected period
+            // Lấy dữ liệu bán hàng cho khoảng thời gian đã chọn
             var orders = await _context.Order
                 .Where(o => o.order_date >= startDate && o.order_date <= endDate)
                 .OrderBy(o => o.order_date)
                 .ToListAsync();
 
-            // Group orders by date and calculate daily totals
+            // Nhóm đơn hàng theo ngày và tính tổng hàng ngày
             var salesByDate = orders
                 .GroupBy(o => o.order_date.Date)
                 .Select(group => new {
@@ -111,7 +111,7 @@ namespace FashionShop.Controllers
                 .OrderBy(x => x.Date)
                 .ToList();
 
-            // Calculate summary statistics
+            // Tính thống kê tổng hợp
             var totalSales = orders.Sum(o => o.total_price) ?? 0;
             var orderCount = orders.Count;
             var averageOrderValue = orderCount > 0 ? totalSales / orderCount : 0;
@@ -121,7 +121,7 @@ namespace FashionShop.Controllers
             ViewBag.AverageOrderValue = averageOrderValue;
             ViewBag.SalesByDate = salesByDate;
 
-            // Calculate sales by status
+            // Tính doanh số theo trạng thái
             var salesByStatus = orders
                 .GroupBy(o => o.order_status)
                 .Select(group => new {
@@ -133,7 +133,7 @@ namespace FashionShop.Controllers
 
             ViewBag.SalesByStatus = salesByStatus;
 
-            // Calculate sales by payment method
+            // Tính doanh số theo phương thức thanh toán
             var salesByPayment = await _context.Order
                 .Where(o => o.order_date >= startDate && o.order_date <= endDate)
                 .Include(o => o.Payment)
@@ -147,7 +147,7 @@ namespace FashionShop.Controllers
 
             ViewBag.SalesByPayment = salesByPayment;
 
-            // Get sales trend over months
+            // Lấy xu hướng doanh số theo tháng
             var salesByMonth = orders
                 .GroupBy(o => new { o.order_date.Year, o.order_date.Month })
                 .Select(group => new {
@@ -160,19 +160,18 @@ namespace FashionShop.Controllers
 
             ViewBag.SalesByMonth = salesByMonth;
 
-
             return View();
         }
 
         public async Task<IActionResult> Products(DateTime? startDate, DateTime? endDate)
         {
-            // Check if user is admin
+            // Kiểm tra người dùng có phải là admin
             if (HttpContext.Session.GetInt32("permission") != 1)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Default to last 30 days if no date range provided
+            // Mặc định là 30 ngày qua nếu không cung cấp khoảng thời gian
             if (!startDate.HasValue)
                 startDate = DateTime.Now.AddDays(-30);
 
@@ -182,7 +181,7 @@ namespace FashionShop.Controllers
             ViewBag.StartDate = startDate.Value.ToString("yyyy-MM-dd");
             ViewBag.EndDate = endDate.Value.ToString("yyyy-MM-dd");
 
-            // Get top selling products for the selected period
+            // Lấy top sản phẩm bán chạy cho khoảng thời gian đã chọn
             var topProducts = await _context.Order_item
                 .Include(oi => oi.Product)
                 .Include(oi => oi.Order)
@@ -200,7 +199,7 @@ namespace FashionShop.Controllers
 
             ViewBag.TopProducts = topProducts;
 
-            // Get sales by category for the selected period
+            // Lấy doanh số theo danh mục cho khoảng thời gian đã chọn
             var salesByCategory = await _context.Order_item
                 .Include(oi => oi.Product)
                 .ThenInclude(p => p.Category)
@@ -218,7 +217,7 @@ namespace FashionShop.Controllers
 
             ViewBag.SalesByCategory = salesByCategory;
 
-            // Get low stock products (this doesn't need date filtering as it's current inventory status)
+            // Lấy sản phẩm sắp hết hàng (không cần lọc theo thời gian vì đây là tình trạng hiện tại)
             var lowStockProducts = await _context.Product
                 .Where(p => p.stock < 10)
                 .OrderBy(p => p.stock)
@@ -226,7 +225,7 @@ namespace FashionShop.Controllers
 
             ViewBag.LowStockProducts = lowStockProducts;
 
-            // Get product popularity by color for the selected period
+            // Lấy thông tin về độ phổ biến của màu sắc sản phẩm trong khoảng thời gian
             var popularColors = await _context.Order_item
                 .Include(oi => oi.Color)
                 .Include(oi => oi.Order)
@@ -244,19 +243,18 @@ namespace FashionShop.Controllers
 
             ViewBag.PopularColors = popularColors;
 
-
             return View();
         }
 
         public async Task<IActionResult> Customers(DateTime? startDate, DateTime? endDate)
         {
-            // Check if user is admin
+            // Kiểm tra người dùng có phải là admin
             if (HttpContext.Session.GetInt32("permission") != 1)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Default to last 30 days if no date range provided
+            // Mặc định là 30 ngày qua nếu không cung cấp khoảng thời gian
             if (!startDate.HasValue)
                 startDate = DateTime.Now.AddDays(-30);
 
@@ -266,7 +264,7 @@ namespace FashionShop.Controllers
             ViewBag.StartDate = startDate.Value.ToString("yyyy-MM-dd");
             ViewBag.EndDate = endDate.Value.ToString("yyyy-MM-dd");
 
-            // Get top customers by order value for the selected period
+            // Lấy top khách hàng theo giá trị đơn hàng cho khoảng thời gian đã chọn
             var topCustomers = await _context.Order
                 .Include(o => o.User)
                 .Where(o => o.order_date >= startDate && o.order_date <= endDate)
@@ -283,7 +281,7 @@ namespace FashionShop.Controllers
 
             ViewBag.TopCustomers = topCustomers;
 
-            // Get new customers within selected period
+            // Lấy khách hàng mới trong khoảng thời gian đã chọn
             var usersWithFirstOrder = await _context.Order
                 .Include(o => o.User)
                 .GroupBy(o => o.user_id)
@@ -305,7 +303,7 @@ namespace FashionShop.Controllers
 
             ViewBag.NewCustomersByMonth = newCustomersByMonth;
 
-            // Calculate customer retention rate for the selected period
+            // Tính tỷ lệ giữ chân khách hàng cho khoảng thời gian đã chọn
             var customersInPeriod = await _context.Order
                 .Where(o => o.order_date >= startDate && o.order_date <= endDate)
                 .Select(o => o.user_id)
@@ -323,14 +321,14 @@ namespace FashionShop.Controllers
             ViewBag.RepeatCustomers = repeatCustomersInPeriod;
             ViewBag.OneTimeCustomers = customersInPeriod - repeatCustomersInPeriod;
 
-            // Customer acquisition by source (mock data - in a real application, you would track this)
+            // Nguồn khách hàng (dữ liệu mẫu - trong ứng dụng thực tế, bạn sẽ theo dõi điều này)
             var customerSource = new List<object>
             {
-                new { Source = "Organic Search", Count = 45 },
-                new { Source = "Social Media", Count = 28 },
-                new { Source = "Direct", Count = 20 },
-                new { Source = "Paid Ads", Count = 12 },
-                new { Source = "Referral", Count = 8 }
+                new { Source = "Tìm kiếm tự nhiên", Count = 45 },
+                new { Source = "Mạng xã hội", Count = 28 },
+                new { Source = "Trực tiếp", Count = 20 },
+                new { Source = "Quảng cáo trả phí", Count = 12 },
+                new { Source = "Giới thiệu", Count = 8 }
             };
 
             ViewBag.CustomerSource = customerSource;
@@ -340,19 +338,19 @@ namespace FashionShop.Controllers
 
         public async Task<IActionResult> Export(string reportType, DateTime? startDate, DateTime? endDate)
         {
-            // Check if user is admin
+            // Kiểm tra người dùng có phải là admin
             if (HttpContext.Session.GetInt32("permission") != 1)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Set default date range if not provided
+            // Thiết lập khoảng thời gian mặc định nếu không cung cấp
             if (!startDate.HasValue)
                 startDate = DateTime.Now.AddMonths(-1);
             if (!endDate.HasValue)
                 endDate = DateTime.Now;
 
-            // Generate CSV content
+            // Tạo nội dung CSV
             var sb = new StringBuilder();
             string fileName = "";
 
@@ -364,14 +362,14 @@ namespace FashionShop.Controllers
                         .Where(o => o.order_date >= startDate && o.order_date <= endDate)
                         .ToListAsync();
 
-                    sb.AppendLine("OrderID,Date,Customer,Amount,Status");
+                    sb.AppendLine("Mã đơn hàng,Ngày,Khách hàng,Số tiền,Trạng thái");
                     foreach (var order in orders)
                     {
                         string customer = EscapeCsv($"{order.User.first_name} {order.User.last_name}");
                         string status = EscapeCsv(GetStatusName(order.order_status));
                         sb.AppendLine($"{order.order_id},{order.order_date:yyyy-MM-dd},{customer},{order.total_price},{status}");
                     }
-                    fileName = $"sales_report_{startDate:yyyy-MM-dd}_to_{endDate:yyyy-MM-dd}.csv";
+                    fileName = $"bao_cao_doanh_so_{startDate:yyyy-MM-dd}_den_{endDate:yyyy-MM-dd}.csv";
                     break;
 
                 case "products":
@@ -391,14 +389,14 @@ namespace FashionShop.Controllers
                         })
                         .ToListAsync();
 
-                    sb.AppendLine("ProductID,Name,Category,Price,QuantitySold,Revenue");
+                    sb.AppendLine("Mã sản phẩm,Tên,Danh mục,Giá,Số lượng đã bán,Doanh thu");
                     foreach (var product in topProducts)
                     {
                         string name = EscapeCsv(product.ProductName);
                         string category = EscapeCsv(product.Category);
                         sb.AppendLine($"{product.ProductId},{name},{category},{product.Price},{product.QuantitySold},{product.Revenue}");
                     }
-                    fileName = $"products_report_{startDate:yyyy-MM-dd}_to_{endDate:yyyy-MM-dd}.csv";
+                    fileName = $"bao_cao_san_pham_{startDate:yyyy-MM-dd}_den_{endDate:yyyy-MM-dd}.csv";
                     break;
 
                 case "customers":
@@ -415,14 +413,14 @@ namespace FashionShop.Controllers
                         })
                         .ToListAsync();
 
-                    sb.AppendLine("UserID,Name,Email,OrderCount,TotalSpent,FirstOrder,LastOrder");
+                    sb.AppendLine("Mã khách hàng,Tên,Email,Số đơn hàng,Tổng chi tiêu,Đơn hàng đầu tiên,Đơn hàng gần nhất");
                     foreach (var customer in customers)
                     {
                         string name = EscapeCsv($"{customer.User.first_name} {customer.User.last_name}");
                         string email = EscapeCsv(customer.User.email);
                         sb.AppendLine($"{customer.User.user_id},{name},{email},{customer.OrderCount},{customer.TotalSpent},{customer.FirstOrderDate:yyyy-MM-dd},{customer.LastOrderDate:yyyy-MM-dd}");
                     }
-                    fileName = $"customers_report_{startDate:yyyy-MM-dd}_to_{endDate:yyyy-MM-dd}.csv";
+                    fileName = $"bao_cao_khach_hang_{startDate:yyyy-MM-dd}_den_{endDate:yyyy-MM-dd}.csv";
                     break;
 
                 case "inventory":
@@ -432,26 +430,26 @@ namespace FashionShop.Controllers
                         .ThenBy(p => p.name)
                         .ToListAsync();
 
-                    sb.AppendLine("ProductID,SKU,Name,Category,Price,Stock,Status");
+                    sb.AppendLine("Mã sản phẩm,Mã SKU,Tên,Danh mục,Giá,Tồn kho,Trạng thái");
                     foreach (var product in inventory)
                     {
-                        string status = product.stock > 10 ? "In Stock" : product.stock > 0 ? "Low Stock" : "Out of Stock";
+                        string status = product.stock > 10 ? "Còn hàng" : product.stock > 0 ? "Sắp hết hàng" : "Hết hàng";
                         sb.AppendLine($"{product.product_id},{EscapeCsv(product.sku)},{EscapeCsv(product.name)},{EscapeCsv(product.Category.name)},{product.price},{product.stock},{status}");
                     }
-                    fileName = $"inventory_report_{DateTime.Now:yyyy-MM-dd}.csv";
+                    fileName = $"bao_cao_ton_kho_{DateTime.Now:yyyy-MM-dd}.csv";
                     break;
 
                 default:
-                    return BadRequest("Invalid report type");
+                    return BadRequest("Loại báo cáo không hợp lệ");
             }
 
-            // Return CSV file with UTF-8 BOM to fix font issues
+            // Trả về tệp CSV với UTF-8 BOM để sửa lỗi font
             byte[] buffer = Encoding.UTF8.GetPreamble().Concat(Encoding.UTF8.GetBytes(sb.ToString())).ToArray();
             return File(buffer, "text/csv", fileName);
         }
 
         /// <summary>
-        /// Escapes CSV values with commas, quotes, or newlines
+        /// Xử lý các giá trị CSV có chứa dấu phẩy, ngoặc kép hoặc dòng mới
         /// </summary>
         private string EscapeCsv(string value)
         {
@@ -460,43 +458,43 @@ namespace FashionShop.Controllers
             bool mustQuote = value.Contains(",") || value.Contains("\"") || value.Contains("\n") || value.Contains("\r");
             if (mustQuote)
             {
-                value = value.Replace("\"", "\"\""); // Escape double quotes
+                value = value.Replace("\"", "\"\""); // Escape dấu ngoặc kép
                 return $"\"{value}\"";
             }
 
             return value;
         }
 
-        // New action for generating PDF reports with date range
+        // Phương thức mới để tạo báo cáo PDF với khoảng thời gian
         public async Task<IActionResult> GeneratePdf(string reportType, DateTime? startDate, DateTime? endDate)
         {
-            // Check if user is admin
+            // Kiểm tra người dùng có phải là admin
             if (HttpContext.Session.GetInt32("permission") != 1)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Set default date range if not provided
+            // Thiết lập khoảng thời gian mặc định nếu không cung cấp
             if (!startDate.HasValue)
                 startDate = DateTime.Now.AddMonths(-1);
             if (!endDate.HasValue)
                 endDate = DateTime.Now;
 
-            // In a real application, you would implement PDF generation here
-            // For this example, we'll just return a message
-            return Content($"PDF generation would be implemented here for: {reportType} from {startDate:yyyy-MM-dd} to {endDate:yyyy-MM-dd}");
+            // Trong ứng dụng thực tế, bạn sẽ triển khai tạo PDF ở đây
+            // Đối với ví dụ này, chúng ta sẽ chỉ trả về một thông báo
+            return Content($"Tạo PDF sẽ được triển khai ở đây cho: {reportType} từ {startDate:yyyy-MM-dd} đến {endDate:yyyy-MM-dd}");
         }
 
-        // Updated dashboard for inventory analysis
+        // Cập nhật bảng điều khiển cho phân tích tồn kho
         public async Task<IActionResult> Inventory(DateTime? startDate, DateTime? endDate)
         {
-            // Check if user is admin
+            // Kiểm tra người dùng có phải là admin
             if (HttpContext.Session.GetInt32("permission") != 1)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Default to last 30 days if no date range provided
+            // Mặc định là 30 ngày qua nếu không cung cấp khoảng thời gian
             if (!startDate.HasValue)
                 startDate = DateTime.Now.AddDays(-30);
 
@@ -506,7 +504,7 @@ namespace FashionShop.Controllers
             ViewBag.StartDate = startDate.Value.ToString("yyyy-MM-dd");
             ViewBag.EndDate = endDate.Value.ToString("yyyy-MM-dd");
 
-            // Get inventory statistics (current status - doesn't need date filtering)
+            // Lấy thống kê tồn kho (trạng thái hiện tại - không cần lọc theo thời gian)
             var totalProducts = await _context.Product.CountAsync();
             var totalStock = await _context.Product.SumAsync(p => p.stock);
             var lowStockCount = await _context.Product.CountAsync(p => p.stock < 10);
@@ -517,7 +515,7 @@ namespace FashionShop.Controllers
             ViewBag.LowStockCount = lowStockCount;
             ViewBag.OutOfStockCount = outOfStockCount;
 
-            // Get inventory by category
+            // Lấy tồn kho theo danh mục
             var inventoryByCategory = await _context.Product
                 .Include(p => p.Category)
                 .GroupBy(p => p.category_id)
@@ -533,15 +531,15 @@ namespace FashionShop.Controllers
 
             ViewBag.InventoryByCategory = inventoryByCategory;
 
-            // Get stock movement for the selected period (based on actual sales)
+            // Lấy biến động tồn kho cho khoảng thời gian đã chọn (dựa trên doanh số thực tế)
             var stockMovement = new List<object>
             {
-                new { Month = "Nov 2024", Incoming = 120, Outgoing = 78, Stock = 580 },
-                new { Month = "Dec 2024", Incoming = 150, Outgoing = 102, Stock = 628 },
-                new { Month = "Jan 2025", Incoming = 80, Outgoing = 95, Stock = 613 },
-                new { Month = "Feb 2025", Incoming = 110, Outgoing = 89, Stock = 634 },
-                new { Month = "Mar 2025", Incoming = 90, Outgoing = 105, Stock = 619 },
-                new { Month = "Apr 2025", Incoming = 130, Outgoing = 100, Stock = 649 }
+                new { Month = "Tháng 11/2024", Incoming = 120, Outgoing = 78, Stock = 580 },
+                new { Month = "Tháng 12/2024", Incoming = 150, Outgoing = 102, Stock = 628 },
+                new { Month = "Tháng 1/2025", Incoming = 80, Outgoing = 95, Stock = 613 },
+                new { Month = "Tháng 2/2025", Incoming = 110, Outgoing = 89, Stock = 634 },
+                new { Month = "Tháng 3/2025", Incoming = 90, Outgoing = 105, Stock = 619 },
+                new { Month = "Tháng 4/2025", Incoming = 130, Outgoing = 100, Stock = 649 }
             };
 
             ViewBag.StockMovement = stockMovement;
@@ -549,10 +547,10 @@ namespace FashionShop.Controllers
             return View();
         }
 
-        // Updated helper methods with date range support
+        // Các phương thức hỗ trợ đã cập nhật với hỗ trợ khoảng thời gian
         private async Task<List<object>> GetRecentOrderStats(DateTime startDate, DateTime endDate)
         {
-            // Get orders from the selected range
+            // Lấy đơn hàng từ khoảng đã chọn
             var recentOrdersData = await _context.Order
                 .Where(o => o.order_date >= startDate && o.order_date <= endDate)
                 .GroupBy(o => o.order_date.Date)
@@ -563,7 +561,7 @@ namespace FashionShop.Controllers
                 .OrderBy(x => x.Date)
                 .ToListAsync();
 
-            // Then do the string formatting in memory
+            // Sau đó thực hiện định dạng chuỗi trong bộ nhớ
             var recentOrders = recentOrdersData
                 .Select(item => new {
                     Date = item.Date.ToString("yyyy-MM-dd"),
@@ -592,6 +590,7 @@ namespace FashionShop.Controllers
 
             return topProducts.Cast<object>().ToList();
         }
+
         private async Task<List<object>> GetCategoryStats(DateTime startDate, DateTime endDate)
         {
             var categoryStats = await _context.Order_item
