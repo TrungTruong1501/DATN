@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "/iXCYTbDgGWGVDXwKEtCeY7MEHnpHnJxopYN6LDJ2zO/3Z3/QulmkOYXjeuA+LeDMzeAXvF1mqy+HqVxLDAeRA==",
+  "dgSpecHash": "cL4ev10ql2WfphHCQxvKu/3OYs9uu0iLnax3tnmK8RawyIFfhXaa5RYbvxCR8r2K4BWeTBCy5Ky/DMauOksVZw==",
   "success": true,
   "projectFilePath": "C:\\DATN\\Sourcode\\FashionShop\\FashionShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Trung Truong\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Trung Truong\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\Trung Truong\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Trung Truong\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Trung Truong\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\Trung Truong\\.nuget\\packages\\microsoft.build.framework\\17.8.3\\microsoft.build.framework.17.8.3.nupkg.sha512",

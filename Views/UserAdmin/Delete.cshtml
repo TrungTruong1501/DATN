@@ -1,0 +1,140 @@
+﻿@model FashionShop.Models.Entities.User
+@{
+    ViewData["Title"] = "Xóa Người Dùng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    bool hasOrders = ViewBag.HasOrders ?? false;
+    int orderCount = ViewBag.OrderCount ?? 0;
+}
+
+<div class="pb-5 border-b border-gray-200 mb-6">
+    <div class="flex items-center justify-between">
+        <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Xóa Người Dùng</h3>
+            <p class="mt-2 max-w-4xl text-sm text-gray-500">Bạn có chắc chắn muốn xóa người dùng này không?</p>
+        </div>
+        <div>
+            <a href="@Url.Action("Index", "UserAdmin")" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <i class="fas fa-arrow-left mr-2"></i> Quay Lại
+            </a>
+        </div>
+    </div>
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="mb-4 p-4 bg-red-100 border border-red-200 text-red-700 rounded-md">
+        <div class="flex">
+            <i class="fas fa-exclamation-circle mr-2"></i>
+            <span>@TempData["ErrorMessage"]</span>
+        </div>
+    </div>
+}
+
+@if (hasOrders)
+{
+    <div class="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+            </div>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-yellow-800">
+                    Cảnh Báo
+                </h3>
+                <div class="mt-2 text-sm text-yellow-700">
+                    <p>Người dùng này có <strong>@orderCount đơn hàng</strong> trong hệ thống. Bạn không thể xóa người dùng này vì việc này sẽ ảnh hưởng đến tính toàn vẹn của dữ liệu đơn hàng.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6 bg-red-50 border-b border-red-200">
+        <h4 class="text-lg leading-6 font-medium text-red-900">Thông Tin Người Dùng</h4>
+    </div>
+    <div class="border-t border-gray-200">
+        <dl>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">ID</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">@Model.user_id</dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Tên Đăng Nhập</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">@Model.username</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Họ Tên</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">@Model.first_name @Model.last_name</dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Email</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">@Model.email</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Vai Trò</dt>
+                <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">
+                    @if (Model.permission == 1)
+                    {
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            <i class="fas fa-user-shield mr-1"></i> Quản Trị Viên
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                            <i class="fas fa-user mr-1"></i> Khách Hàng
+                        </span>
+                    }
+                </dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Số Đơn Hàng</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <span class="font-semibold">@orderCount</span> đơn hàng
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-6 flex items-center space-x-4">
+    @if (!hasOrders)
+    {
+        <form asp-action="Delete" method="post" class="inline">
+            <input type="hidden" asp-for="user_id" />
+            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                    onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này không?')">
+                <i class="fas fa-trash mr-2"></i> Xóa Người Dùng
+            </button>
+        </form>
+    }
+    else
+    {
+        <button type="button" disabled class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-400 bg-gray-100 cursor-not-allowed">
+            <i class="fas fa-ban mr-2"></i> Không Thể Xóa
+        </button>
+    }
+
+    <a href="@Url.Action("Index", "UserAdmin")" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <i class="fas fa-times mr-2"></i> Hủy
+    </a>
+
+    <a href="@Url.Action("Details", "UserAdmin", new { id = Model.user_id })" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <i class="fas fa-eye mr-2"></i> Xem Chi Tiết
+    </a>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto-redirect if trying to delete a user with orders
+        @if (hasOrders)
+        {
+            <text>
+                setTimeout(function () {
+                    window.location.href = '@Url.Action("Index", "UserAdmin")';
+                }, 5000);
+            </text>
+        }
+    </script>
+}

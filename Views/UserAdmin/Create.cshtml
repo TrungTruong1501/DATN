@@ -1,0 +1,120 @@
+﻿@model FashionShop.Models.Entities.User
+@{
+    ViewData["Title"] = "Thêm Người Dùng Mới";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="pb-5 border-b border-gray-200 mb-6">
+    <div class="flex items-center justify-between">
+        <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Thêm Người Dùng Mới</h3>
+            <p class="mt-2 max-w-4xl text-sm text-gray-500">Tạo tài khoản người dùng mới trong hệ thống.</p>
+        </div>
+        <div>
+            <a href="@Url.Action("Index", "UserAdmin")" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <i class="fas fa-arrow-left mr-2"></i> Quay Lại
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg p-6">
+    <form asp-action="Create" method="post">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="mb-4 p-4 bg-red-100 border border-red-200 text-red-700 rounded-md">
+                <div class="flex">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    <span>@TempData["ErrorMessage"]</span>
+                </div>
+            </div>
+        }
+
+        <div asp-validation-summary="ModelOnly" class="text-red-500 mb-4"></div>
+
+        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+            <div>
+                <label asp-for="username" class="block text-sm font-medium text-gray-700">Tên Đăng Nhập <span class="text-red-500">*</span></label>
+                <div class="mt-1">
+                    <input asp-for="username" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required />
+                </div>
+                <span asp-validation-for="username" class="text-red-500 text-xs"></span>
+            </div>
+
+            <div>
+                <label asp-for="password" class="block text-sm font-medium text-gray-700">Mật Khẩu <span class="text-red-500">*</span></label>
+                <div class="mt-1">
+                    <input asp-for="password" type="password" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required />
+                </div>
+                <span asp-validation-for="password" class="text-red-500 text-xs"></span>
+            </div>
+
+            <div>
+                <label asp-for="first_name" class="block text-sm font-medium text-gray-700">Họ <span class="text-red-500">*</span></label>
+                <div class="mt-1">
+                    <input asp-for="first_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required />
+                </div>
+                <span asp-validation-for="first_name" class="text-red-500 text-xs"></span>
+            </div>
+
+            <div>
+                <label asp-for="last_name" class="block text-sm font-medium text-gray-700">Tên <span class="text-red-500">*</span></label>
+                <div class="mt-1">
+                    <input asp-for="last_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required />
+                </div>
+                <span asp-validation-for="last_name" class="text-red-500 text-xs"></span>
+            </div>
+
+            <div>
+                <label asp-for="email" class="block text-sm font-medium text-gray-700">Email <span class="text-red-500">*</span></label>
+                <div class="mt-1">
+                    <input asp-for="email" type="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required />
+                </div>
+                <span asp-validation-for="email" class="text-red-500 text-xs"></span>
+            </div>
+
+            <div>
+                <label asp-for="phone_number" class="block text-sm font-medium text-gray-700">Số Điện Thoại</label>
+                <div class="mt-1">
+                    <input asp-for="phone_number" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                </div>
+                <span asp-validation-for="phone_number" class="text-red-500 text-xs"></span>
+            </div>
+
+            <div class="sm:col-span-2">
+                <label asp-for="address" class="block text-sm font-medium text-gray-700">Địa Chỉ</label>
+                <div class="mt-1">
+                    <textarea asp-for="address" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                </div>
+                <span asp-validation-for="address" class="text-red-500 text-xs"></span>
+            </div>
+
+            <div>
+                <label asp-for="permission" class="block text-sm font-medium text-gray-700">Vai Trò <span class="text-red-500">*</span></label>
+                <div class="mt-1">
+                    <select asp-for="permission" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                        <option value="">Chọn vai trò...</option>
+                        <option value="0">Khách Hàng</option>
+                        <option value="1">Quản Trị Viên</option>
+                    </select>
+                </div>
+                <span asp-validation-for="permission" class="text-red-500 text-xs"></span>
+            </div>
+        </div>
+
+        <div class="mt-6 flex items-center space-x-4">
+            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <i class="fas fa-save mr-2"></i> Tạo Người Dùng
+            </button>
+            <a href="@Url.Action("Index", "UserAdmin")" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Hủy
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

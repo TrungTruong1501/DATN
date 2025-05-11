@@ -41,6 +41,26 @@
       "PackagePath": "staticwebassets\\Images\\Logo\\iconmaster.JPG"
     },
     {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\1ba7b07e-5b1b-4627-b58a-7bcbed79d999_anh8.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\1ba7b07e-5b1b-4627-b58a-7bcbed79d999_anh8.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\566a9c07-6917-484d-9882-0bba19a3f763_anh7.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\566a9c07-6917-484d-9882-0bba19a3f763_anh7.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\8469eeea-19ac-415c-ad66-91ae372b8613_anh8.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\8469eeea-19ac-415c-ad66-91ae372b8613_anh8.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\878d64ae-3728-4d3c-805d-c19e928c8036_anh7.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\878d64ae-3728-4d3c-805d-c19e928c8036_anh7.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\9e5454c1-80f8-4b70-882f-135d96075222_anh8.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\9e5454c1-80f8-4b70-882f-135d96075222_anh8.jpg"
+    },
+    {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AK01a.jpg",
       "PackagePath": "staticwebassets\\Images\\ProductImage\\AK01a.jpg"
     },
@@ -171,6 +191,18 @@
     {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT06c.jpg",
       "PackagePath": "staticwebassets\\Images\\ProductImage\\AT06c.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT09a.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT09a.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT10.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT10.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\AT11.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\AT11.jpg"
     },
     {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\DB01a.jpg",
@@ -405,20 +437,36 @@
       "PackagePath": "staticwebassets\\Images\\ProductImage\\QN05c.jpg"
     },
     {
-      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\anh2.jpg",
-      "PackagePath": "staticwebassets\\Images\\ProductImage\\anh2.jpg"
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\anh5.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\anh5.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\anh6.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\anh6.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\anh7.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\anh7.jpg"
     },
     {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\anh8.jpg",
       "PackagePath": "staticwebassets\\Images\\ProductImage\\anh8.jpg"
     },
     {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\aokhoac1.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\aokhoac1.jpg"
+    },
+    {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\f923cd7b-40fc-4694-b651-47984cd307bb_anh7.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\f923cd7b-40fc-4694-b651-47984cd307bb_anh7.jpg"
+    },
+    {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\sptest.jpg",
       "PackagePath": "staticwebassets\\Images\\ProductImage\\sptest.jpg"
     },
     {
-      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\ảnh 1.jpg",
-      "PackagePath": "staticwebassets\\Images\\ProductImage\\ảnh 1.jpg"
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\ProductImage\\áo khoác.jpg",
+      "PackagePath": "staticwebassets\\Images\\ProductImage\\áo khoác.jpg"
     },
     {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\Images\\branch\\Admin.jpg",
