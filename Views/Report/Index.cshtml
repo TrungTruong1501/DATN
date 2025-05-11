@@ -1,339 +1,190 @@
 ﻿@{
-    ViewData["Title"] = "Báo Cáo & Phân Tích";
+    ViewData["Title"] = "Báo cáo tổng quan";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="pb-5 border-b border-gray-200 mb-6">
-    <h1 class="text-2xl font-bold text-gray-900">Báo Cáo & Phân Tích</h1>
-    <p class="mt-2 text-sm text-gray-500">Xem thống kê chi tiết và báo cáo về hiệu suất của cửa hàng.</p>
-</div>
-
-<!-- Thẻ Tóm Tắt -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-        <div class="p-5">
-            <div class="flex items-center">
-                <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
-                    <i class="fas fa-dollar-sign text-white text-xl"></i>
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                    <dl>
-                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Doanh Số</dt>
-                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalSales.ToString("N0")</dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-        <div class="p-5">
-            <div class="flex items-center">
-                <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
-                    <i class="fas fa-shopping-cart text-white text-xl"></i>
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                    <dl>
-                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Đơn Hàng</dt>
-                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalOrders</dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-        <div class="p-5">
-            <div class="flex items-center">
-                <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
-                    <i class="fas fa-users text-white text-xl"></i>
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                    <dl>
-                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Khách Hàng</dt>
-                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalCustomers</dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-        <div class="p-5">
-            <div class="flex items-center">
-                <div class="flex-shrink-0 bg-purple-500 rounded-md p-3">
-                    <i class="fas fa-box text-white text-xl"></i>
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                    <dl>
-                        <dt class="text-sm font-medium text-gray-500 truncate">Tổng Sản Phẩm</dt>
-                        <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalProducts</dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Liên Kết Báo Cáo -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow">
-        <a href="@Url.Action("Sales", "Report")" class="block p-6">
-            <div class="flex items-center mb-4">
-                <div class="flex-shrink-0 bg-indigo-100 text-indigo-500 rounded-md p-3">
-                    <i class="fas fa-chart-line text-xl"></i>
-                </div>
-                <h3 class="ml-4 text-lg font-medium text-gray-900">Báo Cáo Doanh Số</h3>
-            </div>
-            <p class="text-gray-500 text-sm">Xem báo cáo doanh số chi tiết, xu hướng doanh thu và thống kê đơn hàng.</p>
-            <div class="mt-4 flex items-center text-indigo-600">
-                <span>Xem Báo Cáo</span>
-                <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-        </a>
-    </div>
-
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow">
-        <a href="@Url.Action("Products", "Report")" class="block p-6">
-            <div class="flex items-center mb-4">
-                <div class="flex-shrink-0 bg-green-100 text-green-500 rounded-md p-3">
-                    <i class="fas fa-box text-xl"></i>
-                </div>
-                <h3 class="ml-4 text-lg font-medium text-gray-900">Phân Tích Sản Phẩm</h3>
-            </div>
-            <p class="text-gray-500 text-sm">Phân tích sản phẩm bán chạy, tình trạng hàng tồn kho và hiệu suất theo danh mục.</p>
-            <div class="mt-4 flex items-center text-indigo-600">
-                <span>Xem Báo Cáo</span>
-                <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-        </a>
-    </div>
-
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow">
-        <a href="@Url.Action("Customers", "Report")" class="block p-6">
-            <div class="flex items-center mb-4">
-                <div class="flex-shrink-0 bg-blue-100 text-blue-500 rounded-md p-3">
-                    <i class="fas fa-user-friends text-xl"></i>
-                </div>
-                <h3 class="ml-4 text-lg font-medium text-gray-900">Thông Tin Khách Hàng</h3>
-            </div>
-            <p class="text-gray-500 text-sm">Hiểu hành vi khách hàng, khách hàng hàng đầu và xu hướng thu hút khách hàng.</p>
-            <div class="mt-4 flex items-center text-indigo-600">
-                <span>Xem Báo Cáo</span>
-                <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-        </a>
-    </div>
-
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow">
-        <a href="@Url.Action("Inventory", "Report")" class="block p-6">
-            <div class="flex items-center mb-4">
-                <div class="flex-shrink-0 bg-yellow-100 text-yellow-500 rounded-md p-3">
-                    <i class="fas fa-warehouse text-xl"></i>
-                </div>
-                <h3 class="ml-4 text-lg font-medium text-gray-900">Phân Tích Kho Hàng</h3>
-            </div>
-            <p class="text-gray-500 text-sm">Theo dõi mức tồn kho, biến động hàng và quản lý sản phẩm sắp hết hàng.</p>
-            <div class="mt-4 flex items-center text-indigo-600">
-                <span>Xem Báo Cáo</span>
-                <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-        </a>
-    </div>
-</div>
-
-<!-- Xuất Báo Cáo -->
-<div class="bg-white overflow-hidden shadow-sm rounded-lg mb-8">
-    <div class="px-6 py-5 border-b border-gray-200">
-        <h3 class="text-lg font-medium text-gray-900">Xuất Báo Cáo</h3>
-    </div>
-    <div class="p-6">
-        <p class="text-gray-500 mb-4">Xuất dữ liệu sang định dạng CSV để phân tích thêm hoặc lưu trữ hồ sơ.</p>
-        <div class="flex flex-wrap gap-3">
-            <a href="@Url.Action("Export", "Report", new { reportType = "sales" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                <i class="fas fa-file-csv mr-2"></i> Xuất Báo Cáo Doanh Số
+<div class="min-h-screen bg-gray-100 p-6">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">Báo cáo tổng quan</h1>
+        <div class="flex space-x-4">
+            <a href="@Url.Action("Sales", "Report")" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                <i class="fas fa-chart-line mr-2"></i>Báo cáo bán hàng
             </a>
-            <a href="@Url.Action("Export", "Report", new { reportType = "products" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                <i class="fas fa-file-csv mr-2"></i> Xuất Báo Cáo Sản Phẩm
+            <a href="@Url.Action("Products", "Report")" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                <i class="fas fa-box mr-2"></i>Báo cáo sản phẩm
             </a>
-            <a href="@Url.Action("Export", "Report", new { reportType = "customers" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                <i class="fas fa-file-csv mr-2"></i> Xuất Báo Cáo Khách Hàng
-            </a>
-            <a href="@Url.Action("Export", "Report", new { reportType = "inventory" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                <i class="fas fa-file-csv mr-2"></i> Xuất Báo Cáo Kho Hàng
+            <a href="@Url.Action("Customers", "Report")" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                <i class="fas fa-users mr-2"></i>Báo cáo khách hàng
             </a>
         </div>
-        <div class="mt-4">
-            <p class="text-gray-500 mb-4">Tạo báo cáo PDF để trình bày hoặc in ấn.</p>
-            <div class="flex flex-wrap gap-3">
-                <a href="@Url.Action("GeneratePdf", "Report", new { reportType = "sales" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                    <i class="fas fa-file-pdf mr-2"></i> PDF Doanh Số
-                </a>
-                <a href="@Url.Action("GeneratePdf", "Report", new { reportType = "products" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                    <i class="fas fa-file-pdf mr-2"></i> PDF Sản Phẩm
-                </a>
-                <a href="@Url.Action("GeneratePdf", "Report", new { reportType = "customers" })" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                    <i class="fas fa-file-pdf mr-2"></i> PDF Khách Hàng
-                </a>
+    </div>
+
+    <!-- Date Range Filter -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+        <form method="get" action="@Url.Action("Index", "Report")" class="flex items-center space-x-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Từ ngày:</label>
+                <input type="date" name="startDate" value="@ViewBag.StartDate" class="border border-gray-300 rounded px-3 py-2 text-sm">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Đến ngày:</label>
+                <input type="date" name="endDate" value="@ViewBag.EndDate" class="border border-gray-300 rounded px-3 py-2 text-sm">
+            </div>
+            <div class="mt-5">
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                    <i class="fas fa-filter mr-2"></i>Lọc
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Summary Statistics Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+        <!-- Total Sales Card -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-600">Tổng doanh thu</p>
+                    <p class="text-2xl font-bold text-green-600">@ViewBag.TotalSales.ToString("#,##0")</p>
+                </div>
+                <div class="bg-green-100 p-3 rounded-full">
+                    VND
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Orders Card -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-600">Tổng đơn hàng</p>
+                    <p class="text-2xl font-bold text-blue-600">@ViewBag.TotalOrders</p>
+                </div>
+                <div class="bg-blue-100 p-3 rounded-full">
+                    <i class="fas fa-shopping-cart text-blue-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Products Card -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-600">Tổng sản phẩm</p>
+                    <p class="text-2xl font-bold text-purple-600">@ViewBag.TotalProducts</p>
+                </div>
+                <div class="bg-purple-100 p-3 rounded-full">
+                    <i class="fas fa-box text-purple-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Customers Card -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-600">Tổng khách hàng</p>
+                    <p class="text-2xl font-bold text-indigo-600">@ViewBag.TotalCustomers</p>
+                </div>
+                <div class="bg-indigo-100 p-3 rounded-full">
+                    <i class="fas fa-users text-indigo-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Customers Card -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-600">Khách hàng mới</p>
+                    <p class="text-2xl font-bold text-orange-600">@ViewBag.NewCustomers</p>
+                </div>
+                <div class="bg-orange-100 p-3 rounded-full">
+                    <i class="fas fa-user-plus text-orange-600 text-xl"></i>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Biểu Đồ Doanh Số Gần Đây -->
-<div class="bg-white overflow-hidden shadow-sm rounded-lg mb-8">
-    <div class="px-6 py-5 border-b border-gray-200">
-        <h3 class="text-lg font-medium text-gray-900">Xu Hướng Doanh Số (30 Ngày Qua)</h3>
-    </div>
-    <div class="p-6">
-        <div class="h-64">
-            <canvas id="recentSalesChart"></canvas>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Recent Orders Chart -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Doanh thu theo ngày</h3>
+            <div style="position: relative; height: 300px;">
+                <canvas id="recentOrdersChart"></canvas>
+            </div>
         </div>
-    </div>
-</div>
 
-<!-- Sản Phẩm Bán Chạy và Danh Mục -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-        <div class="px-6 py-5 border-b border-gray-200">
-            <h3 class="text-lg font-medium text-gray-900">Sản Phẩm Bán Chạy Nhất</h3>
-        </div>
-        <div class="p-6">
-            <div class="h-56">
-                <canvas id="topProductsChart"></canvas>
+        <!-- Category Stats Chart -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Doanh thu theo danh mục</h3>
+            <div style="position: relative; height: 300px;">
+                <canvas id="categoryStatsChart"></canvas>
             </div>
         </div>
     </div>
 
-    <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-        <div class="px-6 py-5 border-b border-gray-200">
-            <h3 class="text-lg font-medium text-gray-900">Doanh Số Theo Danh Mục</h3>
-        </div>
-        <div class="p-6">
-            <div class="h-56">
-                <canvas id="categorySalesChart"></canvas>
-            </div>
+    <!-- Top Products Table -->
+    <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Top sản phẩm bán chạy</h3>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sản phẩm</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Số lượng bán</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var product in ViewBag.TopProducts ?? new List<object>())
+                    {
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@product.ProductName</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@product.QuantitySold</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Kiểm tra và khởi tạo biểu đồ doanh thu
+        const recentOrdersData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RecentOrders ?? new List<object>()));
+        const recentOrdersCtx = document.getElementById('recentOrdersChart');
 
-@section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Biểu Đồ Doanh Số Gần Đây
-            const recentSalesData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RecentOrders));
-            const recentSalesCtx = document.getElementById('recentSalesChart').getContext('2d');
-
-            const recentSalesChart = new Chart(recentSalesCtx, {
+        if (recentOrdersCtx && recentOrdersData && recentOrdersData.length > 0) {
+            new Chart(recentOrdersCtx, {
                 type: 'line',
                 data: {
-                    labels: recentSalesData.map(item => item.Date),
+                    labels: recentOrdersData.map(item => {
+                        // Format ngày hiển thị
+                        try {
+                            const date = new Date(item.Date);
+                            return date.toLocaleDateString('vi-VN', {
+                                day: '2-digit',
+                                month: '2-digit'
+                            });
+                        } catch (e) {
+                            return item.Date;
+                        }
+                    }),
                     datasets: [{
-                        label: 'Doanh Số Hàng Ngày',
-                        data: recentSalesData.map(item => item.Total),
-                        backgroundColor: 'rgba(79, 70, 229, 0.2)',
-                        borderColor: 'rgba(79, 70, 229, 1)',
+                        label: 'Doanh thu (VND)',
+                        data: recentOrdersData.map(item => item.Total),
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
                         borderWidth: 2,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function (value) {
-                                    return value.toLocaleString();
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    return context.raw.toLocaleString();
-                                }
-                            }
-                        }
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-
-            // Biểu Đồ Sản Phẩm Bán Chạy
-            const topProductsData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.TopProducts));
-            const topProductsCtx = document.getElementById('topProductsChart').getContext('2d');
-
-            const topProductsChart = new Chart(topProductsCtx, {
-                type: 'bar',
-                data: {
-                    labels: topProductsData.map(item => item.ProductName),
-                    datasets: [{
-                        label: 'Đã Bán',
-                        data: topProductsData.map(item => item.QuantitySold),
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(255, 206, 86, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(153, 102, 255, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-
-            // Biểu Đồ Doanh Số Theo Danh Mục
-            const categoryData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.CategoryStats));
-            const categoryCtx = document.getElementById('categorySalesChart').getContext('2d');
-
-            const categorySalesChart = new Chart(categoryCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: categoryData.map(item => item.CategoryName),
-                    datasets: [{
-                        data: categoryData.map(item => item.Revenue),
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(255, 206, 86, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(153, 102, 255, 0.7)',
-                            'rgba(255, 159, 64, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: 'rgb(59, 130, 246)',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6
                     }]
                 },
                 options: {
@@ -341,18 +192,145 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'right',
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += new Intl.NumberFormat('vi-VN', {
+                                        style: 'currency',
+                                        currency: 'VND'
+                                    }).format(context.parsed.y);
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 45
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return new Intl.NumberFormat('vi-VN', {
+                                        style: 'currency',
+                                        currency: 'VND',
+                                        maximumFractionDigits: 0
+                                    }).format(value);
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        } else {
+            console.warn('Không có dữ liệu biểu đồ doanh thu');
+            if (recentOrdersCtx) {
+                recentOrdersCtx.parentElement.innerHTML = '<p class="text-center text-gray-500 mt-10">Không có dữ liệu hiển thị</p>';
+            }
+        }
+
+        // Kiểm tra và khởi tạo biểu đồ danh mục
+        const categoryStatsData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.CategoryStats ?? new List<object>()));
+        const categoryStatsCtx = document.getElementById('categoryStatsChart');
+
+        if (categoryStatsCtx && categoryStatsData && categoryStatsData.length > 0) {
+            new Chart(categoryStatsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: categoryStatsData.map(item => item.CategoryName),
+                    datasets: [{
+                        data: categoryStatsData.map(item => item.Revenue),
+                        backgroundColor: [
+                            'rgb(59, 130, 246)',
+                            'rgb(16, 185, 129)',
+                            'rgb(139, 92, 246)',
+                            'rgb(236, 72, 153)',
+                            'rgb(245, 158, 11)',
+                            'rgb(99, 102, 241)',
+                            'rgb(244, 63, 94)',
+                            'rgb(14, 165, 233)',
+                            'rgb(34, 197, 94)',
+                            'rgb(251, 191, 36)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                generateLabels: function (chart) {
+                                    const data = chart.data;
+                                    if (data.labels.length && data.datasets.length) {
+                                        return data.labels.map((label, i) => {
+                                            const value = data.datasets[0].data[i];
+                                            const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                            const percentage = Math.round((value / total) * 100);
+                                            return {
+                                                text: `${label} (${percentage}%)`,
+                                                fillStyle: data.datasets[0].backgroundColor[i],
+                                                index: i
+                                            };
+                                        });
+                                    }
+                                    return [];
+                                }
+                            }
                         },
                         tooltip: {
                             callbacks: {
                                 label: function (context) {
-                                    return context.label + ':' + context.raw.toLocaleString();
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += new Intl.NumberFormat('vi-VN', {
+                                        style: 'currency',
+                                        currency: 'VND'
+                                    }).format(context.parsed);
+
+                                    // Tính phần trăm
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                    label += ` (${percentage}%)`;
+
+                                    return label;
                                 }
                             }
                         }
                     }
                 }
             });
-        });
-    </script>
-}
+        } else {
+            console.warn('Không có dữ liệu biểu đồ danh mục');
+            if (categoryStatsCtx) {
+                categoryStatsCtx.parentElement.innerHTML = '<p class="text-center text-gray-500 mt-10">Không có dữ liệu hiển thị</p>';
+            }
+        }
+    });
+</script>
