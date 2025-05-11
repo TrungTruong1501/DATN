@@ -105,13 +105,13 @@
                     @foreach (var product in ViewBag.LowStockProducts)
                     {
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@product.ProductId</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@product.Name</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@product.SKU</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@product.Price</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@product.product_id</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@product.name</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@product.sku</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@product.price</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium @(product.Stock <= 5 ? "bg-red-100 text-red-800" : "bg-yellow-100 text-yellow-800")">
-                                    @product.Stock
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium @(product.stock <= 5 ? "bg-red-100 text-red-800" : "bg-yellow-100 text-yellow-800")">
+                                    @product.stock
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

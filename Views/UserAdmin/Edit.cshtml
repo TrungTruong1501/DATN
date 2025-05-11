@@ -1,0 +1,170 @@
+﻿<!-- UserAdmin/Edit.cshtml - Complete Fix -->
+@model FashionShop.Models.Entities.User
+@{
+    ViewData["Title"] = "Chỉnh Sửa Người Dùng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    bool hasPassword = ViewBag.HasPassword ?? false;
+}
+
+<div class="pb-5 border-b border-gray-200 mb-6">
+    <div class="flex items-center justify-between">
+        <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Chỉnh Sửa Người Dùng</h3>
+            <p class="mt-2 max-w-4xl text-sm text-gray-500">Cập nhật thông tin người dùng: <span class="font-semibold">@Model.username</span></p>
+        </div>
+        <div>
+            <a href="@Url.Action("Index", "UserAdmin")" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                <i class="fas fa-arrow-left mr-2"></i> Quay Lại
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg p-6">
+    <form asp-action="Edit" method="post" novalidate>
+        <input type="hidden" asp-for="user_id" />
+        
+        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+            <!-- Username -->
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">
+                    Tên Đăng Nhập <span class="text-red-500">*</span>
+                </label>
+                <div class="mt-1">
+                    <input type="text" id="username" name="username" value="@Model.username" required
+                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                </div>
+                <span class="text-red-500 text-xs field-validation-error" data-valmsg-for="username"></span>
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">
+                    Mật Khẩu 
+                    <span class="text-xs text-gray-500">(Để trống nếu không thay đổi)</span>
+                </label>
+                <div class="mt-1 relative">
+                    <input type="password" id="password" name="password" 
+                           placeholder="Nhập mật khẩu mới hoặc để trống"
+                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                    @if (hasPassword)
+                    {
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <span class="text-gray-400 sm:text-sm" title="Đã có mật khẩu">
+                                <i class="fas fa-key"></i>
+                            </span>
+                        </div>
+                    }
+                </div>
+                <span class="text-red-500 text-xs field-validation-error" data-valmsg-for="password"></span>
+            </div>
+
+            <!-- First Name -->
+            <div>
+                <label for="first_name" class="block text-sm font-medium text-gray-700">
+                    Họ <span class="text-red-500">*</span>
+                </label>
+                <div class="mt-1">
+                    <input type="text" id="first_name" name="first_name" value="@Model.first_name" required
+                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                </div>
+                <span class="text-red-500 text-xs field-validation-error" data-valmsg-for="first_name"></span>
+            </div>
+
+            <!-- Last Name -->
+            <div>
+                <label for="last_name" class="block text-sm font-medium text-gray-700">
+                    Tên <span class="text-red-500">*</span>
+                </label>
+                <div class="mt-1">
+                    <input type="text" id="last_name" name="last_name" value="@Model.last_name" required
+                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                </div>
+                <span class="text-red-500 text-xs field-validation-error" data-valmsg-for="last_name"></span>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">
+                    Email <span class="text-red-500">*</span>
+                </label>
+                <div class="mt-1">
+                    <input type="email" id="email" name="email" value="@Model.email" required
+                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                </div>
+                <span class="text-red-500 text-xs field-validation-error" data-valmsg-for="email"></span>
+            </div>
+
+            <!-- Phone -->
+            <div>
+                <label for="phone_number" class="block text-sm font-medium text-gray-700">Số Điện Thoại</label>
+                <div class="mt-1">
+                    <input type="tel" id="phone_number" name="phone_number" value="@Model.phone_number"
+                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
+                </div>
+                <span class="text-red-500 text-xs field-validation-error" data-valmsg-for="phone_number"></span>
+            </div>
+
+            <!-- Address -->
+            <div class="sm:col-span-2">
+                <label for="address" class="block text-sm font-medium text-gray-700">Địa Chỉ</label>
+                <div class="mt-1">
+                    <textarea id="address" name="address" rows="3"
+                              class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">@Model.address</textarea>
+                </div>
+                <span class="text-red-500 text-xs field-validation-error" data-valmsg-for="address"></span>
+            </div>
+
+            <!-- Permission -->
+            <div>
+                <label for="permission" class="block text-sm font-medium text-gray-700">
+                    Vai Trò <span class="text-red-500">*</span>
+                </label>
+                <div class="mt-1">
+                    <select asp-for="permission" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                        <option value="0">Khách Hàng</option>
+                        <option value="1">Quản Trị Viên</option>
+                    </select>
+                </div>
+                <span class="text-red-500 text-xs field-validation-error" data-valmsg-for="permission"></span>
+            </div>
+        </div>
+
+        <div class="mt-6 flex items-center space-x-4">
+            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                <i class="fas fa-save mr-2"></i> Lưu Thay Đổi
+            </button>
+            <a href="@Url.Action("Index", "UserAdmin")" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                Hủy
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove validation for password field when editing
+            var passwordField = document.getElementById('password');
+            if (passwordField) {
+                // Override validation
+                passwordField.addEventListener('invalid', function(e) {
+                    e.preventDefault(); // Prevent browser validation popup
+                });
+                
+                // Custom form validation
+                var form = passwordField.closest('form');
+                form.addEventListener('submit', function(e) {
+                    // Allow form submission even if password is empty
+                    if (passwordField.value === '') {
+                        passwordField.setCustomValidity(''); // Clear any validation message
+                    }
+                });
+            }
+        });
+    </script>
+}

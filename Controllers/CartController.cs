@@ -207,12 +207,22 @@ namespace FashionShop.Controllers
                         .ToListAsync();
 
                     if (cartItems.Count == 0)
-            
                     {
                         return RedirectToAction("Index");
                     }
 
                     var totalPrice = cartItems.Sum(ci => ci.Product.price * ci.quantity);
+
+                    // Kiểm tra số lượng tồn kho
+                    foreach (var item in cartItems)
+                    {
+                        var product = await _context.Product.FindAsync(item.product_id);
+                        if (product.stock < item.quantity)
+                        {
+                            ModelState.AddModelError("", $"Sản phẩm {product.name} không đủ số lượng trong kho.");
+                            return RedirectToAction("Checkout");
+                        }
+                    }
 
                     var order = new Order
                     {
@@ -241,6 +251,14 @@ namespace FashionShop.Controllers
                     // Thêm tất cả OrderItems cùng một lúc
                     _context.Order_item.AddRange(orderItems);
 
+                    // Giảm số lượng sản phẩm trong kho
+                    foreach (var item in cartItems)
+                    {
+                        var product = await _context.Product.FindAsync(item.product_id);
+                        product.stock -= item.quantity;
+                        _context.Product.Update(product);
+                    }
+
                     // Xóa tất cả CartItems
                     _context.CartItem.RemoveRange(cartItems);
 
@@ -256,10 +274,6 @@ namespace FashionShop.Controllers
                 {
                     // Xử lý lỗi cụ thể liên quan đến cơ sở dữ liệu
                     await transaction.RollbackAsync();
-
-                    // Nếu muốn debug
-                    // System.Diagnostics.Debug.WriteLine(ex.Message);
-                    // System.Diagnostics.Debug.WriteLine(ex.InnerException?.Message);
 
                     ModelState.AddModelError("", "Có lỗi xảy ra khi lưu đơn hàng. Vui lòng thử lại sau.");
                     return RedirectToAction("Checkout");

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FashionShop.Controllers
@@ -264,59 +265,62 @@ namespace FashionShop.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            // Generate CSV content based on report type
-            string csvContent = "";
+            // Generate CSV content
+            var sb = new StringBuilder();
             string fileName = "";
 
             switch (reportType)
             {
                 case "sales":
                     var orders = await _context.Order.Include(o => o.User).ToListAsync();
-                    csvContent = "OrderID,Date,Customer,Amount,Status\n";
+                    sb.AppendLine("OrderID,Date,Customer,Amount,Status");
                     foreach (var order in orders)
                     {
-                        csvContent += $"{order.order_id},{order.order_date:yyyy-MM-dd},{order.User.first_name} {order.User.last_name},{order.total_price},{GetStatusName(order.order_status)}\n";
+                        string customer = EscapeCsv($"{order.User.first_name} {order.User.last_name}");
+                        string status = EscapeCsv(GetStatusName(order.order_status));
+                        sb.AppendLine($"{order.order_id},{order.order_date:yyyy-MM-dd},{customer},{order.total_price},{status}");
                     }
                     fileName = "sales_report.csv";
                     break;
 
                 case "products":
                     var products = await _context.Product.Include(p => p.Category).ToListAsync();
-                    csvContent = "ProductID,Name,Category,Price,Stock\n";
+                    sb.AppendLine("ProductID,Name,Category,Price,Stock");
                     foreach (var product in products)
                     {
-                        csvContent += $"{product.product_id},{product.name},{product.Category.name},{product.price},{product.stock}\n";
+                        string name = EscapeCsv(product.name);
+                        string category = EscapeCsv(product.Category.name);
+                        sb.AppendLine($"{product.product_id},{name},{category},{product.price},{product.stock}");
                     }
                     fileName = "products_report.csv";
                     break;
 
                 case "customers":
                     var customers = await _context.User.Where(u => u.permission == 0).ToListAsync();
-                    csvContent = "UserID,Name,Email,Phone,Address\n";
+                    sb.AppendLine("UserID,Name,Email,Phone,Address");
                     foreach (var customer in customers)
                     {
-                        // Escape commas in fields
-                        string name = $"{customer.first_name} {customer.last_name}".Replace(",", "");
-                        string address = customer.address?.Replace(",", "") ?? "";
-
-                        csvContent += $"{customer.user_id},{name},{customer.email},{customer.phone_number},{address}\n";
+                        string name = EscapeCsv($"{customer.first_name} {customer.last_name}");
+                        string email = EscapeCsv(customer.email);
+                        string phone = EscapeCsv(customer.phone_number);
+                        string address = EscapeCsv(customer.address ?? "");
+                        sb.AppendLine($"{customer.user_id},{name},{email},{phone},{address}");
                     }
                     fileName = "customers_report.csv";
                     break;
 
                 case "inventory":
-                    // New export option for inventory status
                     var inventory = await _context.Product
                         .Include(p => p.Category)
                         .OrderBy(p => p.Category.name)
                         .ThenBy(p => p.name)
                         .ToListAsync();
 
-                    csvContent = "ProductID,SKU,Name,Category,Price,Stock,Status\n";
+                    sb.AppendLine("ProductID,SKU,Name,Category,Price,Stock,Status");
                     foreach (var product in inventory)
                     {
                         string status = product.stock > 10 ? "In Stock" : product.stock > 0 ? "Low Stock" : "Out of Stock";
-                        csvContent += $"{product.product_id},{product.sku},{product.name},{product.Category.name},{product.price},{product.stock},{status}\n";
+                        sb.AppendLine($"{product.product_id},{EscapeCsv(product.sku)},{EscapeCsv(product.name)},{EscapeCsv(product.Category.name)},{product.price},{product.stock},{status}");
                     }
                     fileName = "inventory_report.csv";
                     break;
@@ -325,7 +329,26 @@ namespace FashionShop.Controllers
                     return BadRequest("Invalid report type");
             }
 
-            return File(System.Text.Encoding.UTF8.GetBytes(csvContent), "text/csv", fileName);
+            // Return CSV file with UTF-8 BOM to fix font issues
+            byte[] buffer = Encoding.UTF8.GetPreamble().Concat(Encoding.UTF8.GetBytes(sb.ToString())).ToArray();
+            return File(buffer, "text/csv", fileName);
+        }
+
+        /// <summary>
+        /// Escapes CSV values with commas, quotes, or newlines
+        /// </summary>
+        private string EscapeCsv(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return "";
+
+            bool mustQuote = value.Contains(",") || value.Contains("\"") || value.Contains("\n") || value.Contains("\r");
+            if (mustQuote)
+            {
+                value = value.Replace("\"", "\"\""); // Escape double quotes
+                return $"\"{value}\"";
+            }
+
+            return value;
         }
 
         // New action for generating PDF reports

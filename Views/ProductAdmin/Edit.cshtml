@@ -10,6 +10,30 @@
     <p class="mt-2 max-w-4xl text-sm text-gray-500">Cập nhật thông tin sản phẩm.</p>
 </div>
 
+@if (TempData["ValidationErrors"] != null)
+{
+    <div class="rounded-md bg-red-50 p-4 mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-red-800">Có lỗi xảy ra:</h3>
+                <div class="mt-2 text-sm text-red-700">
+                    <ul class="list-disc pl-5 space-y-1">
+                        @foreach (var error in TempData["ValidationErrors"] as List<string>)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
     <form asp-controller="ProductAdmin" asp-action="Edit" method="post" enctype="multipart/form-data">
         <input type="hidden" asp-for="product_id" />
@@ -72,32 +96,26 @@
                 </div>
 
                 <div class="sm:col-span-6">
-                    <label for="imageFile" class="block text-sm font-medium text-gray-700">Thay Đổi Hình Ảnh (Tùy Chọn)</label>
+                    <label for="mainImage" class="block text-sm font-medium text-gray-700">Thay Đổi Hình Ảnh (Tùy Chọn)</label>
                     <div class="mt-1">
-                        <input type="file" id="imageFile" name="imageFile" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                        <input type="file" id="mainImage" name="mainImage" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                     <p class="mt-2 text-sm text-gray-500">Tải lên hình ảnh chính mới cho sản phẩm. Kích thước khuyến nghị: 800x800px.</p>
                 </div>
 
-                @if (!string.IsNullOrEmpty(Model.gallery))
-                {
-                    <div class="sm:col-span-6">
-                        <label class="block text-sm font-medium text-gray-700">Bộ Sưu Tập Hiện Tại</label>
-                        <div class="mt-2 grid grid-cols-2 sm:grid-cols-4 gap-4">
-                            @foreach (var image in Model.gallery.Split(','))
-                            {
-                                <img src="~/Images/ProductImage/@image" alt="Ảnh bộ sưu tập" class="h-32 w-full object-cover rounded-md">
-                            }
+                <div class="sm:col-span-6">
+                    <label class="block text-sm font-medium text-gray-700">Quản Lý Màu Sắc</label>
+                    <div id="colorContainer" class="mt-2">
+                        <button type="button" id="addColorBtn" class="mb-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <svg class="-ml-0.5 mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            Thêm Màu
+                        </button>
+                        <div id="colorList">
+                            <!-- Existing colors will be populated here via JavaScript -->
                         </div>
                     </div>
-                }
-
-                <div class="sm:col-span-6">
-                    <label for="galleryFiles" class="block text-sm font-medium text-gray-700">Cập Nhật Bộ Sưu Tập Ảnh (Tùy Chọn)</label>
-                    <div class="mt-1">
-                        <input type="file" id="galleryFiles" name="galleryFiles" multiple class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                    </div>
-                    <p class="mt-2 text-sm text-gray-500">Tải lên thêm hình ảnh bổ sung cho sản phẩm. Kích thước khuyến nghị: 800x800px.</p>
                 </div>
 
                 <div class="sm:col-span-6">
@@ -118,3 +136,63 @@
         </div>
     </form>
 </div>
+
+<script>
+    let colorIndex = 0;
+
+    // Load existing colors when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // You would need to get the existing colors from the server
+        // For now, this is a placeholder
+        loadExistingColors();
+    });
+
+    document.getElementById('addColorBtn').addEventListener('click', function() {
+        addColorRow();
+    });
+
+    function addColorRow(colorName = '', colorHex = '#ffffff', imageSrc = null) {
+        const colorList = document.getElementById('colorList');
+        const index = colorIndex++;
+
+        const colorRow = document.createElement('div');
+        colorRow.className = 'grid grid-cols-1 gap-4 sm:grid-cols-4 items-end p-4 bg-gray-50 rounded-md mt-3';
+        colorRow.innerHTML = `
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Tên Màu</label>
+                <input type="text" name="colorNames[]" value="${colorName}" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Mã Màu</label>
+                <input type="color" name="colorHexes[]" value="${colorHex}" class="mt-1 h-10 w-full rounded-md border-gray-300" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Hình Ảnh Màu</label>
+                <input type="file" name="colorImages[]" class="mt-1 block w-full sm:text-sm border-gray-300 rounded-md" accept="image/*">
+                ${imageSrc ? `<img src="${imageSrc}" class="mt-2 h-20 w-20 object-cover rounded-md" alt="Preview">` : ''}
+            </div>
+            <div>
+                <button type="button" class="removeColorBtn inline-flex items-center p-2 border border-transparent rounded-md text-red-600 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                </button>
+            </div>
+        `;
+
+        colorList.appendChild(colorRow);
+
+        // Add remove functionality
+        colorRow.querySelector('.removeColorBtn').addEventListener('click', function() {
+            colorRow.remove();
+        });
+    }
+
+    function loadExistingColors() {
+        // This function would load existing colors for the product
+        // You would need to pass the existing colors from the controller
+        // For now, showing how to add a placeholder row
+
+        // Example: addColorRow('Red', '#ff0000', '/Images/ProductImage/red-image.jpg');
+    }
+</script>

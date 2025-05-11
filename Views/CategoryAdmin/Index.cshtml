@@ -14,6 +14,52 @@
     </div>
 </div>
 
+<!-- Success Message -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successMessage" class="mb-4 p-4 bg-green-100 border border-green-200 text-green-700 rounded-md">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <i class="fas fa-check-circle text-green-400"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium">@TempData["SuccessMessage"]</p>
+            </div>
+            <div class="ml-auto pl-3">
+                <div class="-mx-1.5 -my-1.5">
+                    <button type="button" class="inline-flex bg-green-100 rounded-md p-1.5 text-green-500 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-100 focus:ring-green-500" onclick="this.parentElement.parentElement.parentElement.parentElement.remove()">
+                        <span class="sr-only">Dismiss</span>
+                        <i class="fas fa-times w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Error Message -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorMessage" class="mb-4 p-4 bg-red-100 border border-red-200 text-red-700 rounded-md">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <i class="fas fa-exclamation-circle text-red-400"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium">@TempData["ErrorMessage"]</p>
+            </div>
+            <div class="ml-auto pl-3">
+                <div class="-mx-1.5 -my-1.5">
+                    <button type="button" class="inline-flex bg-red-100 rounded-md p-1.5 text-red-500 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-100 focus:ring-red-500" onclick="this.parentElement.parentElement.parentElement.parentElement.remove()">
+                        <span class="sr-only">Dismiss</span>
+                        <i class="fas fa-times w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
@@ -106,5 +152,27 @@
         function closeModal() {
             document.getElementById('deleteModal').classList.add('hidden');
         }
+
+        // Auto-hide messages after 5 seconds
+        setTimeout(function () {
+            var successMsg = document.getElementById('successMessage');
+            var errorMsg = document.getElementById('errorMessage');
+
+            if (successMsg) {
+                successMsg.style.opacity = '0';
+                setTimeout(function () { successMsg.remove(); }, 500);
+            }
+
+            if (errorMsg) {
+                errorMsg.style.opacity = '0';
+                setTimeout(function () { errorMsg.remove(); }, 500);
+            }
+        }, 5000);
     </script>
+
+    <style>
+        #successMessage, #errorMessage {
+            transition: opacity 0.5s ease-out;
+        }
+    </style>
 }
