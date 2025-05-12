@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WTQbki8+JIl/J6NlwRKEnbQtMBRqtiBcRJtdl/WCKQs=",
+  "Hash": "gZIQv+gcNOvR0xmSTfTCkf182Ycv/zl8mqXaTC4Sljo=",
   "Source": "FashionShop",
   "BasePath": "_content/FashionShop",
   "Mode": "Default",
@@ -2295,6 +2295,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\admin-dashboard.js"
+    },
+    {
+      "Identity": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\js\\chatbot.js",
+      "SourceId": "FashionShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\",
+      "BasePath": "_content/FashionShop",
+      "RelativePath": "js/chatbot.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\chatbot.js"
     },
     {
       "Identity": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\js\\site.js",

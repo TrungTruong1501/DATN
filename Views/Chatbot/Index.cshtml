@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "Trợ lý ảo FashionShop";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">
+                        <i class="fas fa-robot me-2"></i>
+                        Trợ lý ảo FashionShop
+                    </h4>
+                    <button id="resetChat" class="btn btn-sm btn-outline-light">
+                        <i class="fas fa-trash-alt me-1"></i>
+                        Xóa lịch sử
+                    </button>
+                </div>
+                <div class="card-body chat-container" id="chatBody">
+                    <div class="chat-message bot">
+                        <div class="chat-bubble">
+                            Xin chào! Tôi là trợ lý ảo của FashionShop. Tôi có thể giúp bạn tìm kiếm các sản phẩm thời trang, tư vấn về kích cỡ, phong cách và xu hướng thời trang mới nhất. Bạn cần hỗ trợ gì không?
+                        </div>
+                    </div>
+                    <!-- Tin nhắn sẽ được thêm vào đây bằng JavaScript -->
+                </div>
+                <div class="card-footer">
+                    <div class="suggested-questions mb-2">
+                        <span class="badge text-bg-light chat-suggestion p-2 m-1">Áo thun nam đẹp</span>
+                        <span class="badge text-bg-light chat-suggestion p-2 m-1">Váy dạo phố</span>
+                        <span class="badge text-bg-light chat-suggestion p-2 m-1">Quần jean nữ</span>
+                        <span class="badge text-bg-light chat-suggestion p-2 m-1">Chính sách đổi trả</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="chatInput" class="form-control" placeholder="Nhập tin nhắn của bạn...">
+                        <div class="input-group-append">
+                            <button id="chatSend" class="btn btn-success">
+                                <i class="fas fa-paper-plane"></i> Gửi
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .chat-container {
+        height: 500px;
+        overflow-y: auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+    }
+
+    .chat-message {
+        margin-bottom: 15px;
+        display: flex;
+    }
+
+    .chat-message.user {
+        justify-content: flex-end;
+    }
+
+    .chat-bubble {
+        max-width: 80%;
+        padding: 10px 15px;
+        border-radius: 15px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        white-space: pre-line;
+    }
+
+    .chat-message.user .chat-bubble {
+        background-color: #DCF8C6;
+    }
+
+    .chat-message.bot .chat-bubble {
+        background-color: white;
+    }
+
+    .chat-suggestion {
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .chat-suggestion:hover {
+        background-color: #4CAF50 !important;
+        color: white !important;
+    }
+
+    .typing-bubble {
+        padding: 15px;
+    }
+
+    .typing-dots {
+        display: flex;
+        justify-content: center;
+    }
+
+    .typing-dot {
+        background-color: #b6b6b6;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        margin: 0 2px;
+        animation: typing-animation 1.5s infinite ease-in-out;
+    }
+
+    .typing-dot:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .typing-dot:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+
+    .typing-dot:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    @@keyframes typing-animation {
+        0% {
+            transform: translateY(0px);
+            opacity: 0.5;
+        }
+        50% {
+            transform: translateY(-5px);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(0px);
+            opacity: 0.5;
+        }
+    }
+
+    .chat-link {
+        display: inline-block;
+        color: #4CAF50;
+        font-weight: bold;
+        text-decoration: none;
+        margin-top: 5px;
+    }
+
+    .chat-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+@section Scripts {
+    <script src="~/js/chatbot.js"></script>
+}

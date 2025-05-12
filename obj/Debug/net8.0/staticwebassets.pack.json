@@ -481,6 +481,10 @@
       "PackagePath": "staticwebassets\\js\\admin-dashboard.js"
     },
     {
+      "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\js\\chatbot.js",
+      "PackagePath": "staticwebassets\\js\\chatbot.js"
+    },
+    {
       "Id": "C:\\DATN\\Sourcode\\FashionShop\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

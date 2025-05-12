@@ -1,5 +1,6 @@
-using FashionShop.Models;
+﻿using FashionShop.Models;
 using FashionShop.Models.Entities;
+using FashionShop.Services; // Thêm namespace này
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,13 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+// Đăng ký dịch vụ Chatbot
+builder.Services.AddScoped<ChatbotService>();
+builder.Services.AddScoped<ProductRecommendationService>();
+
+// Thêm HttpClient để gọi API OpenAI
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,13 +42,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.UseSession();
-
 
 app.MapControllerRoute(
     name: "default",
