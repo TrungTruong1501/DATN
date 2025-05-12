@@ -45,7 +45,7 @@ namespace FashionShop.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddToCart(int productId, int colorId, int quantity)
+        public async Task<IActionResult> AddToCart(int productId, int colorId, int sizeId, int quantity)
         {
             var userId = HttpContext.Session.GetInt32("user_id");
             if (!userId.HasValue)
@@ -53,33 +53,38 @@ namespace FashionShop.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
+            // Check if product exists
             var product = await _context.Product.FindAsync(productId);
             if (product == null)
             {
                 return NotFound();
             }
 
+            // Check if color exists
             var color = await _context.Color.FindAsync(colorId);
             if (color == null)
             {
                 return NotFound();
             }
 
-            var existingCartItem = await _context.CartItem
-                .FirstOrDefaultAsync(ci => ci.user_id == userId.Value && ci.product_id == productId && ci.color_id == colorId);
+            // Check if the item is already in the cart
+            var cartItem = await _context.CartItem
+                .FirstOrDefaultAsync(c => c.user_id == userId && c.product_id == productId && c.color_id == colorId && c.size == sizeId);
 
-            if (existingCartItem != null)
+            if (cartItem != null)
             {
-                existingCartItem.quantity += quantity;
-                _context.CartItem.Update(existingCartItem);
+                // Update quantity if item already in cart
+                cartItem.quantity += quantity;
             }
             else
             {
-                var cartItem = new CartItem
+                // Add new item to cart
+                cartItem = new CartItem
                 {
                     user_id = userId.Value,
                     product_id = productId,
                     color_id = colorId,
+                    size = sizeId,
                     quantity = quantity
                 };
                 _context.CartItem.Add(cartItem);
@@ -87,9 +92,9 @@ namespace FashionShop.Controllers
 
             await _context.SaveChangesAsync();
 
+            TempData["SuccessMessage"] = "Sản phẩm đã được thêm vào giỏ hàng!";
             return RedirectToAction("Index");
         }
-
         [HttpPost]
         public async Task<IActionResult> UpdateQuantity(int cartItemId, int quantity)
         {

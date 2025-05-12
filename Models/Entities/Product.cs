@@ -16,6 +16,7 @@ namespace FashionShop.Models.Entities
         public string name { get; set; }
         public string gallery { get; set; }
         public string RowState { get; set; } = "Unchanged";
+        public int size { get; set; } = 0;
 
         // Navigation properties
         public Category Category { get; set; }

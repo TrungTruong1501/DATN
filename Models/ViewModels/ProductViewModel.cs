@@ -9,5 +9,7 @@ namespace FashionShop.Models.ViewModels
         public List<Product> RelatedProducts { get; set; }
         public List<Color> AvailableColors { get; set; }
         public Category Category { get; set; }
+        public Dictionary<int, string> SizeOptions { get; set; } // Thêm thuộc tính mới
+        public int SelectedSize { get; set; } // Thêm thuộc tính mới
     }
 }

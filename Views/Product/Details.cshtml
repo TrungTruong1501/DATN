@@ -4,6 +4,7 @@
     var product = Model.Product;
     var colors = Model.AvailableColors;
     var relatedProducts = Model.RelatedProducts;
+    var sizeOptions = Model.SizeOptions;
 }
 
 <div class="container mx-auto px-4 py-10">
@@ -69,9 +70,23 @@
                             <div data-color-id="@color.color_id" data-image="@color.image_url" class="color-option w-8 h-8 rounded-full border-2 border-transparent cursor-pointer" style="background-color: @color.color_hex" title="@color.color_name"></div>
                         }
                     </div>
-                    <input type="hidden" id="selected-color-id" value="@colors.FirstOrDefault().color_id" />
+                    <input type="hidden" id="selected-color-id" value="@colors.FirstOrDefault()?.color_id" />
                 </div>
             }
+
+            <!-- Size Options -->
+            <div class="mb-6">
+                <h3 class="text-sm font-medium text-gray-700 mb-2">Kích thước:</h3>
+                <div id="size-options" class="flex space-x-2">
+                    @foreach (var size in sizeOptions)
+                    {
+                        <div data-size-id="@size.Key" class="size-option w-10 h-10 flex items-center justify-center rounded border-2 border-gray-300 cursor-pointer hover:border-indigo-600 @(size.Key == Model.SelectedSize ? "border-indigo-600 bg-indigo-50" : "")">
+                            @size.Value
+                        </div>
+                    }
+                </div>
+                <input type="hidden" id="selected-size-id" value="@Model.SelectedSize" />
+            </div>
 
             <div class="mb-6">
                 <h3 class="text-sm font-medium text-gray-700 mb-2">Số lượng:</h3>
@@ -85,7 +100,8 @@
             <div class="flex space-x-4 mb-6">
                 <form asp-controller="Cart" asp-action="AddToCart" method="post" class="flex-grow">
                     <input type="hidden" name="productId" value="@product.product_id" />
-                    <input type="hidden" name="colorId" id="form-color-id" value="@colors.FirstOrDefault().color_id" />
+                    <input type="hidden" name="colorId" id="form-color-id" value="@colors.FirstOrDefault()?.color_id" />
+                    <input type="hidden" name="sizeId" id="form-size-id" value="@Model.SelectedSize" />
                     <input type="hidden" name="quantity" id="form-quantity" value="1" />
                     <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 flex items-center justify-center">
                         <i class="fas fa-shopping-cart mr-2"></i> Thêm Vào Giỏ Hàng
@@ -203,6 +219,28 @@
         if (colorOptions.length > 0) {
             colorOptions[0].classList.add('border-indigo-600');
         }
+
+        // Size selection
+        const sizeOptions = document.querySelectorAll('.size-option');
+        const selectedSizeIdInput = document.getElementById('selected-size-id');
+        const formSizeIdInput = document.getElementById('form-size-id');
+
+        sizeOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                // Remove active class from all options
+                sizeOptions.forEach(opt => {
+                    opt.classList.remove('border-indigo-600', 'bg-indigo-50');
+                });
+
+                // Add active class to selected option
+                this.classList.add('border-indigo-600', 'bg-indigo-50');
+
+                // Update selected size ID
+                const sizeId = this.getAttribute('data-size-id');
+                selectedSizeIdInput.value = sizeId;
+                formSizeIdInput.value = sizeId;
+            });
+        });
 
         // Quantity controls
         const quantityInput = document.getElementById('quantity');

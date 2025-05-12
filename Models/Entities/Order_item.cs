@@ -12,6 +12,8 @@ namespace FashionShop.Models.Entities
         public int? order_id { get; set; }
         public int? color_id { get; set; }
         public string RowState { get; set; } = "Unchanged";
+        public int size { get; set; } = 0;
+
 
         // Navigation properties
         public Product Product { get; set; }
