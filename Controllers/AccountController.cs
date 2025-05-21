@@ -29,22 +29,22 @@ namespace FashionShop.Controllers
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                ViewBag.Error = "username and password are required";
+                ViewBag.Error = "Tên đăng nhập và mật khẩu là bắt buộc";
                 return View();
             }
 
-            // Hash password
+            // Băm mật khẩu
             var hashedPassword = GetMD5Hash(password);
 
             var user = await _context.User.FirstOrDefaultAsync(u => u.username == username && u.password == hashedPassword);
 
             if (user == null)
             {
-                ViewBag.Error = "Invalid username or password";
+                ViewBag.Error = "Mật khẩu hoặc tên đăng nhập không đúng";
                 return View();
             }
 
-            // Set session
+            // Thiết lập phiên làm việc
             HttpContext.Session.SetInt32("user_id", user.user_id);
             HttpContext.Session.SetString("username", user.username);
             HttpContext.Session.SetInt32("permission", user.permission);
@@ -67,35 +67,35 @@ namespace FashionShop.Controllers
             if (string.IsNullOrEmpty(user.username) || string.IsNullOrEmpty(user.password) ||
                 string.IsNullOrEmpty(user.email) || string.IsNullOrEmpty(confirm_password))
             {
-                ViewBag.Error = "Please fill in all required fields";
+                ViewBag.Error = "Vui lòng điền vào tất cả các trường bắt buộc";
                 return View(user);
             }
 
             if (user.password != confirm_password)
             {
-                ViewBag.Error = "Passwords do not match";
+                ViewBag.Error = "Mật khẩu không khớp";
                 return View(user);
             }
 
-            // Check if username already exists
+            // Kiểm tra xem tên người dùng đã tồn tại chưa
             var existingUser = await _context.User.FirstOrDefaultAsync(u => u.username == user.username);
             if (existingUser != null)
             {
-                ViewBag.Error = "username already exists";
+                ViewBag.Error = "Tên đăng nhập đã tồn tại";
                 return View(user);
             }
 
-            // Check if email already exists
+            // Kiểm tra xem email đã tồn tại chưa
             existingUser = await _context.User.FirstOrDefaultAsync(u => u.email == user.email);
             if (existingUser != null)
             {
-                ViewBag.Error = "email already exists";
+                ViewBag.Error = "Email đã tồn tại";
                 return View(user);
             }
 
-            // Hash password
+            // Băm mật khẩu
             user.password = GetMD5Hash(user.password);
-            user.permission = 0; // Regular user
+            user.permission = 0; // Người dùng thông thường
 
             _context.User.Add(user);
             await _context.SaveChangesAsync();
@@ -150,7 +150,7 @@ namespace FashionShop.Controllers
             _context.User.Update(user);
             await _context.SaveChangesAsync();
 
-            ViewBag.SuccessMessage = "Profile updated successfully";
+            ViewBag.SuccessMessage = "Cập nhật hồ sơ thành công";
             return View("Profile", user);
         }
 
@@ -171,13 +171,13 @@ namespace FashionShop.Controllers
 
             if (GetMD5Hash(currentPassword) != user.password)
             {
-                ViewBag.PasswordError = "Current password is incorrect";
+                ViewBag.PasswordError = "Mật khẩu hiện tại không chính xác";
                 return View("Profile", user);
             }
 
             if (newPassword != confirmPassword)
             {
-                ViewBag.PasswordError = "New passwords do not match";
+                ViewBag.PasswordError = "Mật khẩu mới không khớp";
                 return View("Profile", user);
             }
 
@@ -185,7 +185,7 @@ namespace FashionShop.Controllers
             _context.User.Update(user);
             await _context.SaveChangesAsync();
 
-            ViewBag.PasswordSuccess = "password changed successfully";
+            ViewBag.PasswordSuccess = "Thay đổi mật khẩu thành công";
             return View("Profile", user);
         }
 

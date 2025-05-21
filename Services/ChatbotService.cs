@@ -27,7 +27,7 @@ namespace FashionShop.Services
             _apiKey = configuration["OpenAI:ApiKey"];
             _model = configuration["OpenAI:Model"] ?? "gpt-3.5-turbo";
             _maxTokens = configuration.GetValue<int>("OpenAI:MaxTokens", 500);
-            _temperature = configuration.GetValue<double>("OpenAI:Temperature", 0.7);
+            _temperature = configuration.GetValue<double>("OpenAI:Temperature", 0.1);
             _context = context;
         }
 
@@ -42,7 +42,8 @@ namespace FashionShop.Services
                 string systemMessage = "Bạn là trợ lý ảo cho cửa hàng thời trang FashionShop. " +
                     "Hãy giúp khách hàng tìm kiếm sản phẩm, tư vấn về quần áo, kích cỡ và phong cách thời trang. " +
                     "Trả lời ngắn gọn, thân thiện và hữu ích bằng tiếng Việt. " +
-                    "Nếu khách hỏi về sản phẩm cụ thể, hãy đề xuất từ danh mục sản phẩm.";
+                    "Nếu khách hỏi về sản phẩm cụ thể, hãy đề xuất từ danh mục sản phẩm."+
+                    "khi giới thiệu sản phẩm thì phải đưa cả link đến sản phẩm luôn nhé";
 
                 if (!string.IsNullOrEmpty(productInfo))
                 {

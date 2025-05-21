@@ -32,7 +32,7 @@ namespace FashionShop.Controllers
                 }
 
                 // Lấy user ID từ session nếu đã đăng nhập
-                int? userId = HttpContext.Session.GetInt32("UserId");
+                int? userId = HttpContext.Session.GetInt32("user_id");
 
                 var response = await _chatbotService.GetChatbotResponseAsync(message.Message, userId, message.ChatHistory);
 
